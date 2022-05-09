@@ -37,6 +37,7 @@ class Pessoa extends Model {
     return $this->hasOne(Funcionario::class);
     
     }
+    
 
     use SoftDeletes;
     use HasFactory;

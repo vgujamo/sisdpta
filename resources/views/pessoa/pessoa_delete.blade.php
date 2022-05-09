@@ -13,7 +13,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-center bg-warning">
-                    Pretende realmente apagar o registo  
+                    Pretende realmente apagar o registo selecionado?
                 </div>
                 <div class="modal-body text-center">
                     <b>{{ $pessoa->nome }} {{ $pessoa->apelido }}?</b>

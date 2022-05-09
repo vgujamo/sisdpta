@@ -11,7 +11,8 @@
               <![endif]-->
         <!-- Meta -->
         <meta charset="utf-8">
-        <link rel="icon" href="{{ asset('imj/ta1.png')}}" type="image/x-icon">
+
+        <link rel="icon" href="{{ asset('public/imj/ta1.png')}}" type="image/x-icon">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
@@ -20,29 +21,29 @@
         <meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
         <meta name="author" content="CodedThemes">
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('css/all.css') }}" />
-        <link type="text/css" href="{{ asset('jquery-ui-1.12.1/jquery-ui.css') }}" />
-        <link type="text/css" href="{{ asset('jquery-ui-1.12.1/jquery-ui.theme.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('public/css/all.css') }}" />
+        <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.css') }}" />
+        <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.theme.css') }}" />
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
         <!-- Required Fremwork -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+        <script type="text/javascript" src="{{ asset('public/jquery-ui-1.12.1/jquery-ui.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery.mCustomScrollbar.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap/css/bootstrap.min.css') }}">
         <!-- themify-icons line icon -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('icon/themify-icons/themify-icons.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/icon/themify-icons/themify-icons.css') }}">
         <!-- ico font -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('icon/icofont/css/icofont.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/icon/icofont/css/icofont.css') }}">
+        <script type="text/javascript" src="{{ asset('public/js/jquery.maskMoney.min.js') }}"></script>
         <!-- Style.css -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
 
-        <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('jquery-ui-1.12.1/jquery-ui.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.maskMoney.min.js') }}"></script>
-        <script type="text/javascript" async="" src="{{ asset('analytics.js.transferir') }}"></script>
-        <script async="" src="{{ asset('js/js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/sweetalert2.all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/popper.min.js') }}"></script>
+        <script type="text/javascript" async="" src="{{ asset('public/analytics.js.transferir') }}"></script>
+        <script async="" src="{{ asset('public/js/js') }}"></script>
 
 
     </head>
@@ -94,11 +95,11 @@
                 <nav class="navbar header-navbar pcoded-header bg-danger">
                     <div class="navbar-wrapper">
                         <div class="navbar-logo">
-                            <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <a class="mobile-menu" id="mobile-collapse" href="">
                                 <i class="ti-menu"></i>
                             </a>
-                            <a href="#">
-                                <img class="img-fluid" src="{{ asset('imj/ta1.PNG')}}" width="80" alt="Tribunal Administrativo" />
+                            <a href="">
+                                <img class="img-fluid" src="{{ asset('public/imj/ta1.PNG')}}" width="80" alt="Tribunal Administrativo" />
 
                             </a>
                             <a class="mobile-options">
@@ -179,7 +180,6 @@
                         <nav class="pcoded-navbar">
                             <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                             <div class="pcoded-inner-navbar main-menu">
-                                <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">MENU DO SISTEMA</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="active">
                                         <a href="index.html">
@@ -188,22 +188,78 @@
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
+                                </ul>
+                                <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">MENU DO SISTEMA</div>
+                                <ul class="pcoded-item pcoded-left-item">                                                              
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="ti-settings"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Administração</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{ route('pessoa.pessoa_list') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar pessoa</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{ route('pessoa.pessoa_create') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Pessoa</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="{{ route('funcionario.funcionario_list') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar Funcionario</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="{{ route('funcionario.funcionario_create') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Funcionario</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="#">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Gerir user</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">  
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
                                             <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Pessoa</span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Menu</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="{{ route('pessoa.list') }}">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="{{ route('pessoa.create') }}">
+                                                <a href="#">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -212,30 +268,31 @@
                                         </ul>
                                     </li>
                                 </ul>
+
                                 <ul class="pcoded-item pcoded-left-item">                                                              
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Administração</span>
+                                            <span class="pcoded-micon"><i class="ti-layers-alt"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Secretaria</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="auth-normal-sign-in.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Processo</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="auth-sign-up.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="sample-page.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -247,13 +304,13 @@
                                 <ul class="pcoded-item pcoded-left-item">                                                              
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Secretaria Geral</span>
+                                            <span class="pcoded-micon"><i class="ti-layout-grid3-alt"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Cartório</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="auth-normal-sign-in.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -267,39 +324,7 @@
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="sample-page.html">
-                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="pcoded-item pcoded-left-item">                                                              
-                                    <li class="pcoded-hasmenu">
-                                        <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Cartorio</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                        <ul class="pcoded-submenu">
-                                            <li class=" ">
-                                                <a href="auth-normal-sign-in.html">
-                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li class=" ">
-                                                <a href="auth-sign-up.html">
-                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li class=" ">
-                                                <a href="sample-page.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -317,21 +342,21 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="auth-normal-sign-in.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="auth-sign-up.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="sample-page.html">
+                                                <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -343,7 +368,7 @@
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="pcoded-hasmenu ">
                                         <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
+                                            <span class="pcoded-micon"><i class="ti-stats-down"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Estatística</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
@@ -382,9 +407,9 @@
 
                                         </ul>
                                     <li>
-                                        <a href="map-google.html">
+                                        <a href="#">
                                             <span class="pcoded-micon"><i class="ti-book"></i><b>FC</b></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Documantação</span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Documentação</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
@@ -418,31 +443,31 @@
         </div>
 
 
-        <script type="text/javascript" src="{{ asset('js/jquery/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery-ui/jquery-ui.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/popper.js/popper.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/popper.js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/bootstrap/js/bootstrap.min.js') }}"></script>
 
         <!-- jquery slimscroll js -->
         <script type="text/javascript" src="{{ asset ('js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
         <!-- modernizr js -->
-        <script type="text/javascript" src="{{ asset ('js/modernizr/modernizr.js') }}"></script>
+        <script type="text/javascript" src="{{ asset ('public/js/modernizr/modernizr.js') }}"></script>
 
         <!-- am chart -->
-        <script src="{{ asset('js/widget/amchart/amcharts.min.js') }}"></script>
-        <script src="{{ asset('js/widget/amchart/serial.min.js') }}"></script>
+        <script src="{{ asset('public/js/widget/amchart/amcharts.min.js') }}"></script>
+        <script src="{{ asset('public/js/widget/amchart/serial.min.js') }}"></script>
 
         <!-- Todo js -->
-        <script type="text/javascript " src="{{ asset ('js/todo/todo.js') }}"></script>
+        <script type="text/javascript " src="{{ asset ('public/js/todo/todo.js') }}"></script>
 
         <!-- Custom js -->
-        <script type="text/javascript" src="{{ asset('js/dashboard/custom-dashboard.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-        <script type="text/javascript " src="{{ asset('js/SmoothScroll.js') }}"></script>
-        <script src="{{ asset('js/pcoded.min.js')}}"></script>
-        <script src="{{ asset('js/demo-12.js')}}"></script>
-        <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/dashboard/custom-dashboard.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/script.js') }}"></script>
+        <script type="text/javascript " src="{{ asset('public/js/SmoothScroll.js') }}"></script>
+        <script src="{{ asset('public/js/pcoded.min.js')}}"></script>
+        <script src="{{ asset('public/js/demo-12.js')}}"></script>
+        <script src="{{ asset('public/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
         <script>
                                         var $window = $(window);
@@ -503,7 +528,7 @@
             })
                     @endif
         </script>
-        <script type="text/javascript" src="{{ asset('js/closesearch.js') }}"> </script>
+
     </body>
 
 </html>

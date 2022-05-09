@@ -1,5 +1,18 @@
 @extends('layout.sisdpta')
 @section("conteudo")
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont icofont icofont-list bg-c-pink"></i>
+                <div class="d-inline">
+                    <h4>Detalhes da Pessoa</h4>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="accordion">
     <div class="card">
@@ -122,7 +135,7 @@
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" >
                             <i class="fa fa-trash" aria-hidden="true"></i> Apagar registo
                         </button>
-                        @include('pessoa.delete')
+                        @include('pessoa.pessoa_delete')
 
                     </form>
                 </div>
@@ -134,7 +147,7 @@
 </div>
 
 <div class="col-sm btn-group-sm">
-    <a class="btn btn-outline-primary" href="{{ route('pessoa.list') }}">
+    <a class="btn btn-outline-primary" href="{{ route('pessoa.pessoa_list') }}">
         <i class="fa fa-arrow-circle-left"></i>  Voltar
     </a>
 </div>

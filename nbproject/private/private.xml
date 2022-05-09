@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/pessoa/list.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/app/Http/Controllers/PessoaController.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/app/Models/User.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/app/Http/Requests/StoreUpdatePessoa.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/pessoa/create.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/.env</file>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/pessoa/delete.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/routes/web.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/config/auth.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/layout/sisdpta.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/config/app.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/.gitignore</file>
+            <file>file:/C:/wamp64/www/sisdpta/app/Models/Processo.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/app/Models/Pessoa.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/database/migrations/2022_05_06_135905_create_processos_table.php</file>
         </group>
     </open-files>
 </project-private>
