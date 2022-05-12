@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Processo extends Model {
 
-    protected $table = 'processo';
+    protected $table = 'processos';
     protected $fillable = [
         "num_processo",
         "data_entrada",
@@ -19,8 +19,12 @@ class Processo extends Model {
         "recorrido",
         "contaparte",
         "objecto",
+        "anexo",
         "descricao",
     ];
+    
+   
+   
 
     use HasFactory;
     use SoftDeletes;

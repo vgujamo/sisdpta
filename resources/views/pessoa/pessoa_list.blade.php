@@ -24,11 +24,9 @@
                 <i class="fas fa-search"></i> Pesquisar
             </button>
         </div>
-       
+
 </form>
 </div>
-
-@csrf
 
 <table class="table table-sm table-striped">
     <thead class="">
@@ -37,9 +35,7 @@
             <th>Nome</th>
             <th>Apelido</th>
             <th>Data Ater.</th>
-
             <th class="text-center">Acção</th>
-
         </tr>
     </thead>
     <tbody class="text text-Sentensecase">
@@ -49,7 +45,6 @@
             <td> {{$pessoa->nome}}</td>
             <td> {{$pessoa->apelido}} </td>
             <td> {{$pessoa->updated_at}} </td>
-
             <!-- BOTAO PARA VISUALIZAR -->
             <td class="text-right" >
                 <a class="btn btn-outline-secondary" href="{{ route('pessoa.pessoa_details', $pessoa->id) }}">
@@ -62,21 +57,17 @@
                 </a>
             </td>         
         </tr>
-
         @empty
         <tr>
     <div class="bg-danger text-center">
         <i class="fas fa-exclamation-circle"></i> 
         Dados não encontrados.
     </div>
-
 </tr>
-
 @endforelse
-
 </tbody>
 </table>
 
-{{ $pessoas->onEachSide(5)->links() }}
+{{ $pessoas->onEachSide(10)->links() }}
 
 @endsection

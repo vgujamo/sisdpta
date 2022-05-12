@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     PessoaController,
     FuncionarioController,
+    ProcessoController,
   
 };
 
@@ -40,6 +41,18 @@ Route::get('/funcionario/search', [FuncionarioController::class, 'search'])->nam
 Route::delete('/funcionario/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.destroy');
 Route::get('/funcionario/funcionario_details/{id}', [FuncionarioController::class, 'show'])->name('funcionario.funcionario_details');
 Route::get('/funcionario/funcionario_edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionario.funcionario_edit');
+
+Route::get('/processo/processo_list', [ProcessoController::class, 'index'])->name('processo.processo_list');
+Route::get('/processo/processo_create', [ProcessoController::class, 'create'])->name('processo.processo_create');
+Route::post('/processo', [ProcessoController::class, 'store'])->name('processo.store');
+Route::put('/processo/{id}', [ProcessoController::class, 'update'])->name('processo.update');
+Route::get('/processo/search', [ProcessoController::class, 'search'])->name('processo.processo_search');
+Route::delete('/processo/{id}', [ProcessoController::class, 'destroy'])->name('processo.destroy');
+Route::get('/processo/processo_details/{id}', [ProcessoController::class, 'show'])->name('processo.processo_details'); //Falta o id
+Route::get('/processo/processo_edit/{id}', [ProcessoController::class, 'edit'])->name('processo.processo_edit');//Falta o id
+
+
+
 
 
 

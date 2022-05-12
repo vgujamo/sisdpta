@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/sisdpta/app/Models/Processo.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/app/Models/Pessoa.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/database/migrations/2022_05_06_135905_create_processos_table.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/resources/views/processo/processo_edit.blade.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/resources/views/processo/processo_details.blade.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/resources/views/processo/processo_create.blade.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/app/Http/Requests/StoreUpdateProcesso.php</file>
+            <file>file:/C:/wamp64/www/sisdpta/app/Http/Controllers/ProcessoController.php</file>
         </group>
     </open-files>
 </project-private>

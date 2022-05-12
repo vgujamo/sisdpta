@@ -14,7 +14,7 @@ class CreateProcessosTable extends Migration {
     public function up() {
         Schema::create('processos', function (Blueprint $table) {
             $table->id();
-            $table->string('num_processo',50);
+            $table->string('num_processo',50)->unique();
             $table->date('data_entrada')->format('dd/mm/yyyy');
             $table->string('seccao',50);
             $table->string('subseccao',50);
@@ -23,6 +23,7 @@ class CreateProcessosTable extends Migration {
             $table->string('recorrido',50);
             $table->string('contaparte',50);
             $table->string('objecto',100);
+            $table->string('anexo');
             $table->string('descricao',100);
             $table->softDeletes();
             $table->timestamps();
