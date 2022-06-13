@@ -8,13 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Processo extends Model {
 
+    use HasFactory;
+    use SoftDeletes;
+
     protected $table = 'processos';
     protected $fillable = [
         "num_processo",
         "data_entrada",
-        "seccao",
-        "subseccao",
-        "especie",
+        "seccao_id",
+        "subseccao_id",
+        "especie_id",
+        "juiz_id",
         "requerrente",
         "recorrido",
         "contaparte",
@@ -23,9 +27,31 @@ class Processo extends Model {
         "descricao",
     ];
     
-   
-   
+    protected $attributes = [
+        'recorrido' => 'N/A',
+    ];
 
-    use HasFactory;
-    use SoftDeletes;
+    public function seccao() {
+        return $this->belongsTo(Seccao::class)->withDefault([
+                    'nome' => 'N\A',
+        ]);
+    }
+
+    public function subseccao() {
+        return $this->belongsTo(SubSeccao::class)->withDefault([
+                    'nome' => 'N\A',
+        ]);
+    }
+
+    public function especie() {
+        return $this->belongsTo(Especie::class)->withDefault([
+                    'nome' => 'N\A',
+        ]);
+    }
+    
+    public function juiz() {
+        return $this->belongsTo(Juiz::class);
+        
+    }
+
 }

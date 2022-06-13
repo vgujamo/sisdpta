@@ -14,17 +14,30 @@ class CreateProcessosTable extends Migration {
     public function up() {
         Schema::create('processos', function (Blueprint $table) {
             $table->id();
-            $table->string('num_processo',50)->unique();
+            $table->string('num_processo', 50)->unique();
             $table->date('data_entrada')->format('dd/mm/yyyy');
-            $table->string('seccao',50);
-            $table->string('subseccao',50);
-            $table->string('especie',50);
-            $table->string('requerrente',50);
-            $table->string('recorrido',50);
-            $table->string('contaparte',50);
-            $table->string('objecto',100);
-            $table->string('anexo');
-            $table->string('descricao',100);
+            $table->unsignedBigInteger('seccao_id');
+            $table->foreign('seccao_id')->references('id')->on('seccaos')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('subseccao_id');
+            $table->foreign('subseccao_id')->references('id')->on('sub_seccaos')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('especie_id');
+            $table->foreign('especie_id')->references('id')->on('especies')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('juiz_id');
+            $table->foreign('juiz_id')->references('id')->on('juiz')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->string('requerrente', 50);
+            $table->string('recorrido', 50)->nullable();
+            $table->string('contaparte', 50);
+            $table->string('objecto', 100);
+            $table->string('anexo')->nullable();
+            $table->string('descricao', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

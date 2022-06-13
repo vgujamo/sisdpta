@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Processo;
+use App\Models\{
+    Pessoa,
+    Funcionario,
+    Processo,
+    Seccao,
+    SubSeccao,
+    Especie,
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -22,12 +29,16 @@ class ProcessoController extends Controller {
     }
 
     public function create() {
-        return view('processo.processo_create');
+        $seccoes = Seccao::get();
+        $subseccoes = SubSeccao::get();
+        $especies = Especie::get();
+        //$especie1 = Especie::get();
+
+        return view('processo.processo_create', compact('seccoes', 'subseccoes', 'especies'));
     }
 
     public function store(StoreUpdateProcesso $request) {
         $data = $request->all();
-
         if ($request->anexo->isValid()) {
             $nameFile = Str::of($request->num_processo)->slug('-') . '.' . $request->anexo->getClientOriginalExtension();
             $anexo = $request->anexo->storeAs('processos', $nameFile);
@@ -41,7 +52,7 @@ class ProcessoController extends Controller {
     }
 
     public function show($id) {
-
+       
         if (!$processo = Processo::find($id)) {
             return redirect()->back();
         }
@@ -49,10 +60,13 @@ class ProcessoController extends Controller {
     }
 
     public function edit($id) {
+        $seccoes = Seccao::get();
+        $subseccoes = SubSeccao::get();
+        $especies = Especie::get();
         if (!$processo = Processo::find($id)) {
             return redirect()->back();
         }
-        return view('processo.processo_edit', compact('processo'));
+        return view('processo.processo_edit', compact('processo', 'seccoes', 'subseccoes', 'especies'));
     }
 
     public function update(StoreUpdateProcesso $request, $id) {
@@ -65,8 +79,7 @@ class ProcessoController extends Controller {
         if ($request->anexo->isValid()) {
             if (Storage::exists($processo->anexo))
                 Storage::delete($processo->anexo);
-            
-            
+
             $nameFile = Str::of($request->num_processo)->slug('-') . '.' . $request->anexo->getClientOriginalExtension();
             $anexo = $request->anexo->storeAs('processos', $nameFile);
             $data['image'] = $anexo;
@@ -80,16 +93,26 @@ class ProcessoController extends Controller {
                         ->with('txtmessage', 'Clique OK para continuar.');
     }
 
-    public function destroy(Processo $processo) {
-        
+    public function destroy($id) {
+        if (!$processo = Processo::find($id))
+            return redirect()->route('processo.processo_list');
+        $processo->delete();
+        return redirect()->route('processo.processo_list');
     }
 
-    public function search() {
-        return view('processo.processo_search');
+    public function search(Request $request) {
+        $processos = Processo::where('num_processo', 'LIKE', "%{$request->search}%") //pesquisar pelo numero de processo
+                ->paginate(5);
+        return view('processo.processo_list', compact('processos'));
     }
 
     public function download(Request $request) {
-        
+
         return;
     }
+
+    public function validar() {
+        
+    }
+
 }

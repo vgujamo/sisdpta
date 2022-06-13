@@ -19,7 +19,7 @@
     @csrf
     <div class="row">
         <div class="col-sm input-group form">
-            <input class="form-control" placeholder="Pesquise pelo nome ou apelido)" aria-label="Close" id="search" type="search" name="search" value="{{ request()->query('search')}}" />                          
+            <input class="form-control" placeholder="Pesquise pelo nome ou apelido" aria-label="Close" id="search" type="search" name="search" value="{{ request()->query('search')}}" />                          
             <button type="submit" class="btn btn-primary" autofocus="">
                 <i class="fas fa-search"></i> Pesquisar
             </button>
@@ -27,6 +27,8 @@
 
 </form>
 </div>
+
+
 
 <table class="table table-sm table-striped">
     <thead class="">
@@ -64,6 +66,7 @@
         Dados não encontrados.
     </div>
 </tr>
+
 @endforelse
 </tbody>
 </table>

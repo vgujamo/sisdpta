@@ -39,14 +39,16 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="seccao">Secção</label>
-                            <select class="form-control @error('seccao') is-invalid @enderror" type="text" name="seccao" id="seccao" value="{{ old('data_entrada') }}" />
-                                <option disabled selected>Selecione a Secção</option>
+                            <label form="seccao_id">Secção</label>
+                            <select class="form-control @error('seccao_id') is-invalid @enderror"  name="seccao_id" id="seccao_dropdwn">
+                                <option disabled selected>---Selecione a Seccção---</option>
+                                @foreach($seccoes as $key =>$seccao)
+                                @dump($key)
 
-                                <option value="1 SubSeccao">1 Secção</option>
-
+                                <option value="{{$seccao->id  }}" >{{$seccao->nome}}</option>
+                                @endforeach
                             </select>
-                            @error('seccao')
+                            @error('seccao_id')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
                             </span>
@@ -57,14 +59,13 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="subseccao">Subsecção</label>
-                            <select class="form-control @error('subseccao') is-invalid @enderror" type="text" name="subseccao" id="subseccao" value="">
-                                <option disabled selected>Selecione a SubSecção</option>
+                            <label form="subseccao_id">Subsecção</label>
+                            <select class="form-control @error('subseccao_id') is-invalid @enderror" name="subseccao_id" id="subseccao_dropdown">
+                                <option disabled selected>--Selecione a SubSecção--</option>
 
-                                <option value="1 SubSeccao">1 SubSecção</option>
-
+                               <option value=""></option>
                             </select>
-                            @error('subseccao')
+                            @error('subseccao_id')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
                             </span>
@@ -75,14 +76,13 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="especie">Especie</label>
-                            <select class="form-control @error('especie') is-invalid @enderror" type="text" name="especie" id="especie">
-                                <option disabled selected>Selecione a Especie</option>
-
-                                <option value="Especie">Especie 1</option>
-
+                            <label form="especie_id">Especie</label>
+                            <select class="form-control @error('especie_id') is-invalid @enderror" name="especie_id" id="especie_dropdown">
+                                <option disabled selected>--Selecione a Especie--</option>
+                                
+                                <option value=""></option>
                             </select>
-                            @error('especie')
+                            @error('especie_id')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
                             </span>
@@ -96,8 +96,8 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="requerrente">Requerente</label>
-                            <input class="form-control @error('requerrente') is-invalid @enderror" type="text" placeholder="Requerente" name="requerrente" value="{{ old('requerrente') }}" />
+                            <label form="requerrente">Requerente/Entidade</label>
+                            <input class="form-control @error('requerrente') is-invalid @enderror" type="text" placeholder="Requerente/Entidade" name="requerrente" value="{{ old('requerrente') }}" />
                             @error('requerrente')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -110,7 +110,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="recorrido">Recorrido</label>
-                            <input class="form-control @error('recorrido') is-invalid @enderror" type="text" placeholder="Recorrido" name="recorrido" value="{{ old('recorrido') }}" />
+                            <input class="form-control @error('recorrido') is-invalid @enderror" type="text" placeholder="Recorrido (Opcional)" name="recorrido" value="{{ old('recorrido') }}" />
                             @error('recorrido')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -139,7 +139,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="objecto">Objecto</label>
-                            <textarea class="form-control @error('objecto') is-invalid @enderror" id="objecto" placeholder="Objecto do processo" name="objecto" rows="2" cols="10" value="{{ old('objecto') }}"></textarea>
+                            <textarea class="form-control @error('objecto') is-invalid @enderror" id="objecto" placeholder="Objecto do processo" name="objecto" rows="2" cols="10"> {{ old('objecto') }} </textarea>
                             @error('objecto')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -154,7 +154,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="descricao">Descrição</label>
-                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo (Opcional)" name="descricao" rows="4" cols="10" value="{{ old('descricao') }}"></textarea>
+                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo (Opcional)" name="descricao" rows="4" cols="10"> {{ old('descricao') }} </textarea>
                             @error('descricao')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -169,7 +169,8 @@
                     <div class="row p-1">
                         <div class="form-group col-sm-5 input-group-sm">
                             <label form="anexo">Anexo</label>
-                            <input class="form-control @error('anexo') is-invalid @enderror" type="file" placeholder="Anexo" name="anexo" multiple="" wire:model="anexo" />
+                            <input class="form-control @error('anexo') is-invalid @enderror" type="file" placeholder="Anexo" 
+                                   name="anexo" multiple="" wire:model="anexo" accept="" multiple=""/>
                             @error('anexo')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -200,4 +201,60 @@
     </div>
 
 </form>
+
+@push('processo')
+<script>
+    $(document).ready(function () {
+        $("#seccao_dropdwn").on('change', function () {
+//            alert('Ola Pais'); return;
+            let id = this.value;
+            let url = '{{ route("get_subseccao_by_seccao",":id") }}';
+            url = url.replace(":id", id);
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (subseccoes) {
+                    //Preencher Select Por JavaScript
+                    subseccao_dropdown.innerHTML = ''; //Limpa oSelect
+                    especie_dropdown.innerHTML = ''; //Limpa oSelect
+                    subseccoes.forEach((subseccao) => {
+                        let option = document.createElement('option');
+                        option.value = subseccao.id;
+                        option.text = subseccao.nome;
+                        subseccao_dropdown.append(option)
+                    });
+                    // Preencher Select por Ficheiro
+                    // $("#provincia_dropdown").html(provincias);
+                }
+            });
+        });
+        $("#subseccao_dropdown").on('change', function () {
+//            alert('Ola Provincia'); return;
+            let id = this.value;
+            let url = '{{ route("get_especie_by_subseccao",":id") }}';
+            url = url.replace(":id", id);
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (especies) {
+//                    console.table(data);
+                    //Preencher Select Por JavaScript
+                  especie_dropdown.innerHTML = ''; //Limpa oSelect
+                    especies.forEach((especie) => {
+                        let option = document.createElement('option');
+                        option.value = especie.id;
+                        option.text = especie.nome;
+                        especie_dropdown.append(option)
+                    });
+                    // Preencher Select por Ficheiro
+                    // $("#provincia_dropdown").html(provincias);
+                    //$("#provincia_dropdown").html(data);
+                }
+            });
+        });
+    });
+       
+</script>
+@endpush
+
 @endsection

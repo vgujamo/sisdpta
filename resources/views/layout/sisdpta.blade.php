@@ -24,12 +24,12 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('public/css/all.css') }}" />
         <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.css') }}" />
         <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.theme.css') }}" />
-
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
         <!-- Required Fremwork -->
         <script type="text/javascript" src="{{ asset('public/jquery-ui-1.12.1/jquery-ui.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery.mCustomScrollbar.css') }}">
+        <script type="text/javascript" src="{{ asset('public/js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/bootstrap.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap/css/bootstrap.min.css') }}">
         <!-- themify-icons line icon -->
         <link rel="stylesheet" type="text/css" href="{{ asset('public/icon/themify-icons/themify-icons.css') }}">
@@ -39,9 +39,8 @@
         <!-- Style.css -->
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
 
-        <script type="text/javascript" src="{{ asset('public/js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/sweetalert2.all.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/popper.min.js') }}"></script>
+
         <script type="text/javascript" async="" src="{{ asset('public/analytics.js.transferir') }}"></script>
         <script async="" src="{{ asset('public/js/js') }}"></script>
 
@@ -227,9 +226,9 @@
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="#">
+                                                <a href="{{ route('especie.especie_list') }}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Gerir user</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Especie de Processos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -278,7 +277,7 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="{{ route('processo.processo_search')}}">
+                                                <a href="{{ route('processo.processo_list')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Processo</span>
                                                     <span class="pcoded-mcaret"></span>
@@ -312,7 +311,7 @@
                                             <li class=" ">
                                                 <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"> Processo</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -374,9 +373,9 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="">
-                                                <a href="javascript:void(0)">
+                                                <a href="">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Menu Level 2.1</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Por Seccao</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -469,66 +468,77 @@
         <script src="{{ asset('public/js/demo-12.js')}}"></script>
         <script src="{{ asset('public/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
+        <script src="link">
+         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+         return new bootstrap.Popover(popoverTriggerEl)
+                                            })
+        </script>
+        
         <script>
-                                        var $window = $(window);
-                                        var nav = $('.fixed-button');
-                                        $window.scroll(function() {
-                                        if ($window.scrollTop() >= 200) {
-                                        nav.addClass('active');
-                                        } else {
-                                        nav.removeClass('active');
-                                        }
-                                        });
-        </script>
-        <script type="text/javascript">
-            @if (session('message')) //MESSAGEM DE CONFIRMACAO PARA SUCESSO
-                    Swal.fire({
-                    icon: '{{session('messageicon')}}',
-                            title: '{{session('message')}}',
-                            text: '{{session('txtmessage')}}',
-                            showConfirmButton: true,
-                            timer: 15000,
-                            //footer: '<a href="">Why do I have this issue?</a>'
-                    })
+        var $window = $(window);
+        var nav = $('.fixed-button');
+        $window.scroll(function() {
+        if ($window.scrollTop() >= 200) {
+        nav.addClass('active');
+        } else {
+        nav.removeClass('active');
+        }
+        });
+    </script>
+    <script type="text/javascript">
+                @if (session('message')) //MESSAGEM DE CONFIRMACAO PARA SUCESSO
+                Swal.fire({
+                icon: '{{session('messageicon')}}',
+                        title: '{{session('message')}}',
+                        text: '{{session('txtmessage')}}',
+                        showConfirmButton: true,
+                        timer: 15000,
+                        //footer: '<a href="">Why do I have this issue?</a>'
+                })
 
-                    //MESSAGEM DE CONFIRMACAO PARA APAGAR
-                    @elseif(session('message2'))
-                    Swal.fire({
-                    icon: '{{session('messageicon2')}}',
-                            title: '{{session('message2')}}',
-                            text: '{{session('txtmessage2')}}',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Sim, Apagar!'
-                    }).then((result) => {
-            if (result.isConfirmed) {
-            Swal.fire(
-                    'Dado Apagado!',
-                    'Dado apagado com sucesso',
-                    'success'
-                    )
-            }
-            })
-                    //MESSAGEM DE CONFIRMACAO PARA ALTERAR
-                    @elseif(session('message3'))
-                    Swal.fire({
-                    title: '{{session('message3')}}?',
-                            showDenyButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: 'Sim',
-                            denyButtonText: `Não`,
-                    }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-            Swal.fire('Gravado!', '', 'success')
-            } else if (result.isDenied) {
-            Swal.fire('Dados não gravados', '', 'info')
-            }
-            })
-                    @endif
-        </script>
+                //MESSAGEM DE CONFIRMACAO PARA APAGAR
+                @elseif(session('message2'))
+                Swal.fire({
+                icon: '{{session('messageicon2')}}',
+                        title: '{{session('message2')}}',
+                        text: '{{session('txtmessage2')}}',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sim, Apagar!'
+                }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire(
+                'Dado Apagado!',
+                'Dado apagado com sucesso',
+                'success'
+                )
+        }
+        })
+                //MESSAGEM DE CONFIRMACAO PARA ALTERAR
+                @elseif(session('message3'))
+                Swal.fire({
+                title: '{{session('message3')}}?',
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: 'Sim',
+                        denyButtonText: `Não`,
+                }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+        Swal.fire('Gravado!', '', 'success')
+        } else if (result.isDenied) {
+        Swal.fire('Dados não gravados', '', 'info')
+        }
+        })
+                @endif
 
-    </body>
+    </script>
+
+    @stack('scripts')
+    @stack('processo')
+    @stack('especies')
+</body>
 
 </html>
