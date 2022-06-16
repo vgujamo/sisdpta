@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pessoa;
-use App\Models\Funcionario;
+use App\Models\{
+   Pessoa,
+   Funcionario,
+   Pais,
+   Provincia,
+   Distrito,
+};
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdatePessoa;
 use App\Http\Requests\StoreUpdateFuncionario;
-
 
 class PessoaController extends Controller {
 
@@ -17,7 +21,10 @@ class PessoaController extends Controller {
     }
 
     public function create() {
-        return view('pessoa.pessoa_create');
+        $paises = Pais::get();
+        $provincias = Provincia::get();
+        $distritos = Distrito::get();
+        return view('pessoa.pessoa_create', compact('paises', 'provincias', 'distritos'));
     }
 
     public function store(StoreUpdatePessoa $request) {
@@ -32,6 +39,7 @@ class PessoaController extends Controller {
         if (!$pessoa = Pessoa::find($id)) {
             return redirect()->route('pessoa.pessoa_list');
         }
+
         return view('pessoa.pessoa_details', compact('pessoa'));
     }
 
@@ -39,7 +47,11 @@ class PessoaController extends Controller {
         if (!$pessoa = Pessoa::find($id)) {
             return redirect()->back();
         }
-        return view('pessoa.pessoa_edit', compact('pessoa'));
+        $paises = Pais::get();
+        $provincias = Provincia::get();
+        $distritos = Distrito::get();
+
+        return view('pessoa.pessoa_edit', compact('pessoa', 'paises', 'provincias', 'distritos'));
     }
 
     public function update(StoreUpdatePessoa $request, $id) {
@@ -60,12 +72,12 @@ class PessoaController extends Controller {
         return redirect()->route('pessoa.pessoa_list');
     }
 
-    
-      public function search(Request $request) {
-      $pessoas = Pessoa::where('nome', 'LIKE', "%{$request->search}%") //pesquisar pelo nome
-      ->orwhere('apelido', 'LIKE', "%{$request->search}%")     //pesquisar pelo apelido
-      ->orwhere('nuit', '=', "%{$request->search}%")           //Pesquisar pelo nuit
-      ->paginate(5);                                           //Numero de registos por pagina
-      return view('pessoa.pessoa_list', compact('pessoas'));
-      }
+    public function search(Request $request) {
+        $pessoas = Pessoa::where('nome', 'LIKE', "%{$request->search}%") //pesquisar pelo nome
+                ->orwhere('apelido', 'LIKE', "%{$request->search}%")     //pesquisar pelo apelido
+                ->orwhere('nuit', '=', "%{$request->search}%")           //Pesquisar pelo nuit
+                ->paginate(5);                                           //Numero de registos por pagina
+        return view('pessoa.pessoa_list', compact('pessoas'));
+    }
+
 }

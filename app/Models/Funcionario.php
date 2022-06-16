@@ -8,19 +8,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Funcionario extends Model {
 
+    use SoftDeletes;
+    use HasFactory;
+
     protected $table = 'funcionarios';
     protected $fillable = [
         "nif",
     ];
 
-
     public function pessoa() {
-        return $this->belongsTo(Pessoa::class)->withDefault([
-                    'nome' => 'N\A',
-                    'apelido' => 'N\A',
+        return $this->belongsTo(Pessoa::class)
+                        ->withDefault([
+                            'nome' => 'N\A',
+                            'apelido' => 'N\A',
         ]);
     }
-    use SoftDeletes;
-    use HasFactory;
+
+    public function pais() {
+        return $this->belongsTo(Funcionario::class)
+                        ->withDefault();
+    }
 
 }

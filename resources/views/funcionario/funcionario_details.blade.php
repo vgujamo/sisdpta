@@ -29,22 +29,22 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>NIF</th>
                             <th>Nome</th>
                             <th>Apelido</th>
                             <th>Nome do Pai</th>
                             <th>Nome da Mãe</th>
-                            <th>Sexo</th>
                             <th>Estado civil</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{$pessoa->nome}}</td>
-                            <td>{{$pessoa->apelido}}</td>
-                            <td>{{$pessoa->pai}}</td>
-                            <td>{{$pessoa->mae}}</td>
-                            <td>{{$pessoa->sexo}}</td>
-                            <td>{{$pessoa->estado_civil}}</td>
+                            <td>{{$funcionario->nif}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->nome : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->apelido : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->pai : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->mae : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->estado_civil : ''}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -75,12 +75,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $pessoa->tipo_doc }}</td>
-                            <td>{{ $pessoa->num_doc }}</td>
-                            <td>{{ $pessoa->nuit }}</td>
-                            <td>{{ $pessoa->pais ? $pessoa->pais->nome : '' }}</td>
-                            <td>{{ $pessoa->provincia ? $pessoa->provincia->nome : '' }}</td>
-                            <td>{{ $pessoa->distrito  ? $pessoa->distrito->nome : '' }}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->tipo_doc : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->num_doc : ''}}>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->nuit : ''}}</td>
+                            <td>{{$funcionario->pessoa->pais ? $funcionario->pessoa->pais->nome : ''}}</td>
+                            <td>{{$funcionario->pessoa->provincia ? $funcionario->pessoa->provincia->nome : ''}}</td>
+                            <td>{{$funcionario->pessoa->distrito ? $funcionario->pessoa->distrito->nome : ''}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -108,9 +108,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{$pessoa->contacto1}}</td>
-                            <td>{{$pessoa->contacto2}}</td>
-                            <td>{{$pessoa->email}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->contacto1 : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->contacto2 : ''}}</td>
+                            <td>{{$funcionario->pessoa ? $funcionario->pessoa->email : ''}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -131,15 +131,15 @@
                 Ao clicar no botao abaixo ira eleminar definitivamente todos os dados aqui descritos.
                 Esta e uma operacao inreversivel, portanto tenha a certeza absoluta de tal accao.
                 <div class="col-sm btn-group-sm">
-
-                    <form id="form-delete" action="{{ route('pessoa.destroy', $pessoa->id) }}" method="POST" >
+                    
+                    <form id="form-delete" action="{{ route('funcionario.destroy', $funcionario->id) }}" method="POST" >
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" >
                             <i class="fa fa-trash" aria-hidden="true"></i> Apagar registo
                         </button>
-                        @include('pessoa.pessoa_delete')
-
+                        @include('funcionario.funcionario_delete')
+                        
                     </form>
                 </div>
             </div>
@@ -148,7 +148,7 @@
 </div>
 
 <div class="col-sm btn-group-sm">
-    <a class="btn btn-outline-primary" href="{{ route('pessoa.pessoa_list') }}">
+    <a class="btn btn-outline-primary" href="{{ route('funcionario.funcionario_list') }}">
         <i class="fa fa-arrow-circle-left"></i>  Voltar
     </a>
 </div>

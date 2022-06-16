@@ -5,6 +5,20 @@
     @csrf
     @foreach ($errors->all() as $error)
     @endforeach
+    <div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont icofont icofont-list bg-c-pink"></i>
+                <div class="d-inline">
+                    <h4>Adicionar Processo</h4>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
     <div class="card">
         <div class="card-block">
             <div class="row">
@@ -153,8 +167,8 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="descricao">Descrição</label>
-                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo (Opcional)" name="descricao" rows="4" cols="10"> {{ old('descricao') }} </textarea>
+                            <label form="descricao">Descrição (Opcional)</label>
+                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo " name="descricao" rows="4" cols="10"> {{ old('descricao') }} </textarea>
                             @error('descricao')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>

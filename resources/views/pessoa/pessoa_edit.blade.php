@@ -6,7 +6,7 @@
             <div class="page-header-title">
                 <i class="icofont icofont icofont icofont-edit bg-c-pink"></i>
                 <div class="d-inline">
-                    <h4>Editar Funcionario</h4>
+                    <h4>Editar Pessoa</h4>
                     <span></span>
                 </div>
             </div>
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<form class="form-horizontal" role="form" action="{{ route('pessoa.update', $pessoa->id) }}" " method="post" autocomplete="on" style="">
+<form class="form-horizontal" role="form" action="{{ route('pessoa.update', $pessoa->id) }}" method="post" autocomplete="on">
     @csrf
     @foreach ($errors->all() as $error)
     @endforeach
@@ -101,7 +101,7 @@
                         <div class="form-group col-sm">
                             <label form="">Estado Civil</label>
                             <select class="form-control @error('estado_civil') is invalid @enderror" name="estado_civil" id="estado_civil" type="text" >
-                                <option disabled selected>Selecione o estado civil</option>
+                                <option disabled selected>--Selecione o estado civil--</option>
                                 <option value="Solteiro" <?php echo $pessoa->estado_civil == 'Solteiro' ? 'selected' : ''; ?> />Solteiro</option>
                                 <option value="Casado" <?php echo $pessoa->estado_civil == 'Casado' ? 'selected' : ''; ?> />Casado</option>
                                 <option value="Divorciado" <?php echo $pessoa->estado_civil == 'Divorciado' ? 'selected' : ''; ?> />Divorciado</option>
@@ -141,28 +141,31 @@
                                         <div class="tab-pane active" id="home1" role="tabpanel">
                                             <div class="row">
                                                 <div class="col-sm form-group input-group-sm">
-                                                    <label form="nacionalidade">Nacionalidade</label>
-                                                    <select class="form-control @error('nacionalidade') is-invalid @enderror" type="text" name="nacionalidade" id="nacionalidade">
-                                                        <option disabled selected>Selecione a Nacionalidade</option>
+                                                    <label form="pais_id">Nacionalidade</label>
 
-                                                        <option value="Moçambicana" <?php echo $pessoa->nacionalidade == 'Moçambicana' ? 'selected' : ''; ?> />Moçambicana</option>
-
+                                                    <select class="form-control @error('pais_id') is-invalid @enderror"  name="pais_id" id="pais_dropdwn">
+                                                        <option disabled selected>--Selecione a Nacionalidade--</option>
+                                                        @foreach($paises as $key =>$pais)
+                                                        @dump($key)
+                                                        <option value="{{$pais->id}}">{{$pais->nome}}</option>
+                                                        @endforeach
                                                     </select>
-                                                    @error('nacionalidade')
+
+                                                    @error('pais_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <b><i>{{$message}}</i></b>
                                                     </span>
                                                     @enderror
                                                 </div>
                                                 <div class="col-sm form-group input-group-sm">
-                                                    <label form="provincia">Provincia</label>
-                                                    <select class="form-control @error('provincia_nas') is-invalid @enderror" type="text" name="provincia_nas" id="provincia_nas">
-                                                        <option disabled selected>Selecione a Provincia</option>
+                                                    <label form="provincia_id">Provincia</label>
+                                                    <select class="form-control @error('provincia_id') is-invalid @enderror" name="provincia_id" id="provincia_dropdown">
+                                                        <option disabled selected>--Selecione a Provincia--</option>
 
-                                                        <option value="Maputo" <?php echo $pessoa->provincia_nas == 'Maputo' ? 'selected' : ''; ?> />Maputo</option>
+                                                        <option value=""></option>
 
                                                     </select>
-                                                    @error('provincia_nas')
+                                                    @error('provincia_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <b><i>{{$message}}</i></b>
                                                     </span>
@@ -170,14 +173,14 @@
                                                 </div>
 
                                                 <div class="col-sm form-group input-group-sm">
-                                                    <label form="distrito">Distrito</label>
-                                                    <select class="form-control @error('distrito_nas') is-invalid @enderror" type="text" name="distrito_nas" id="distrito_nas">
-                                                        <option disabled selected>Selecione o Distrito</option>
+                                                    <label form="distrito_id">Distrito</label>
+                                                    <select class="form-control @error('distrito_id') is-invalid @enderror" name="distrito_id" id="distrito_dropdown">
+                                                        <option disabled selected>--Selecione o Distrito--</option>
 
-                                                        <option value="Maputo" <?php echo $pessoa->distrito_nas == 'Maputo' ? 'selected' : ''; ?> />Maputo</option>
+                                                        <option value=""></option>
 
                                                     </select>
-                                                    @error('distrito_nas')
+                                                    @error('distrito_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <b><i>{{$message}}</i></b>
                                                     </span>
@@ -229,7 +232,7 @@
                                             <div class="row p-1">
                                                 <div class="col-sm form-group input-group-sm">
                                                     <label form="tipo_doc">Tipo de Documento</label>
-                                                    <select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" id="tipo_doc" type="text" value="{{ $pessoa->tipo_doc}}">
+                                                    <select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" id="tipo_doc" type="text">
                                                         <option value="BI">BI</option>
                                                         <option value="Passaporte" <?php echo $pessoa->tipo_doc == 'Passaporte' ? 'selected' : ''; ?> />Passaporte</option>
                                                         <option value="Cartão de Eleitor"  <?php echo $pessoa->tipo_doc == 'Cartão de Eleitor' ? 'selected' : ''; ?> />Cartão de Eleitor</option>
@@ -300,7 +303,7 @@
                             <div class="row p-1">
                                 <div class="form-group- col-sm input-group-sm">
                                     <label form="observacao">Observação</label><!-- comment -->
-                                    <textarea class="form-control" id="id" name="observacao" rows="4" cols="8" placeholder="Observação" value="{{ $pessoa->observacao }}"></textarea>
+                                    <textarea class="form-control" id="id" name="observacao" rows="4" cols="8" placeholder="Observação" >{{ $pessoa->observacao }}</textarea>
                                 </div>   
                             </div>
 
@@ -327,4 +330,61 @@
     </div>
 
 </form>
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $("#pais_dropdwn").on('change', function () {
+//            alert('Ola Pais'); return;
+            let id = this.value;
+            let url = '{{ route("get_provincia_by_pais",":id") }}';
+            url = url.replace(":id", id);
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (provincias) {
+                    //Preencher Select Por JavaScript
+                    provincia_dropdown.innerHTML = ''; //Limpa oSelect
+                    distrito_dropdown.innerHTML = ''; //Limpa oSelect
+                    provincias.forEach((provincia) => {
+                        let option = document.createElement('option');
+                        option.value = provincia.id;
+                        option.text = provincia.nome;
+                        provincia_dropdown.append(option)
+                    });
+                    // Preencher Select por Ficheiro
+                    // $("#provincia_dropdown").html(provincias);
+                }
+            });
+        });
+        $("#provincia_dropdown").on('change', function () {
+//            alert('Ola Provincia'); return;
+            let id = this.value;
+            let url = '{{ route("get_distrito_by_provincia",":id") }}';
+            url = url.replace(":id", id);
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (distritos) {
+//                    console.table(data);
+                    //Preencher Select Por JavaScript
+                    distrito_dropdown.innerHTML = ''; //Limpa oSelect
+                    distritos.forEach((distrito) => {
+                        let option = document.createElement('option');
+                        option.value = distrito.id;
+                        option.text = distrito.nome;
+                        distrito_dropdown.append(option)
+                    });
+                    // Preencher Select por Ficheiro
+                    // $("#provincia_dropdown").html(provincias);
+
+
+                    //$("#provincia_dropdown").html(data);
+                }
+            });
+        });
+    });
+</script>
+@endpush
+
 @endsection

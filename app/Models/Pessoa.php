@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pessoa extends Model {
 
+    use SoftDeletes;
+    use HasFactory;
+
     protected $table = 'pessoas';
     protected $fillable = [
         "nome",
@@ -17,9 +20,9 @@ class Pessoa extends Model {
         "mae",
         "estado_civil",
         "data_nasc",
-        "nacionalidade",
-        "provincia_nas",
-        "distrito_nas",
+        "pais_id",
+        "provincia_id",
+        "distrito_id",
         "bairro",
         "casa",
         "quart",
@@ -32,13 +35,24 @@ class Pessoa extends Model {
         "nuit",
         "observacao",
     ];
-    
-    public function funcionario() {
-    return $this->hasOne(Funcionario::class);
-    
-    }
-    
 
-    use SoftDeletes;
-    use HasFactory;
+    public function funcionario() {
+        return $this->hasOne(Funcionario::class);
+    }
+
+    public function pais() {
+        return $this->belongsTo(Pais::class)
+                        ->withDefault([
+                            'nome' => 'M/A',
+        ]);
+    }
+
+    public function provicnia() {
+        return $this->belongsTo(Provincia::class);
+    }
+
+    public function distrito() {
+        return $this->belongsTo(Distrito::class);
+    }
+
 }

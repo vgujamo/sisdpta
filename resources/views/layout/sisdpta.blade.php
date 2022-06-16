@@ -44,6 +44,8 @@
         <script type="text/javascript" async="" src="{{ asset('public/analytics.js.transferir') }}"></script>
         <script async="" src="{{ asset('public/js/js') }}"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
     </head>
 
@@ -98,7 +100,7 @@
                                 <i class="ti-menu"></i>
                             </a>
                             <a href="">
-                                <img class="img-fluid" src="{{ asset('public/imj/ta1.PNG')}}" width="80" alt="Tribunal Administrativo" />
+                                <img class="img-fluid " src="{{ asset('public/imj/logo.PNG')}}" width="200" alt="Tribunal Administrativo" />
 
                             </a>
                             <a class="mobile-options">
@@ -454,8 +456,7 @@
         <script type="text/javascript" src="{{ asset ('public/js/modernizr/modernizr.js') }}"></script>
 
         <!-- am chart -->
-        <script src="{{ asset('public/js/widget/amchart/amcharts.min.js') }}"></script>
-        <script src="{{ asset('public/js/widget/amchart/serial.min.js') }}"></script>
+
 
         <!-- Todo js -->
         <script type="text/javascript " src="{{ asset ('public/js/todo/todo.js') }}"></script>
@@ -468,77 +469,80 @@
         <script src="{{ asset('public/js/demo-12.js')}}"></script>
         <script src="{{ asset('public/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
-        <script src="link">
-         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-         return new bootstrap.Popover(popoverTriggerEl)
-                                            })
-        </script>
-        
+
+
         <script>
-        var $window = $(window);
-        var nav = $('.fixed-button');
-        $window.scroll(function() {
-        if ($window.scrollTop() >= 200) {
-        nav.addClass('active');
-        } else {
-        nav.removeClass('active');
-        }
-        });
-    </script>
-    <script type="text/javascript">
-                @if (session('message')) //MESSAGEM DE CONFIRMACAO PARA SUCESSO
-                Swal.fire({
-                icon: '{{session('messageicon')}}',
-                        title: '{{session('message')}}',
-                        text: '{{session('txtmessage')}}',
-                        showConfirmButton: true,
-                        timer: 15000,
-                        //footer: '<a href="">Why do I have this issue?</a>'
-                })
+                                        var $window = $(window);
+                                        var nav = $('.fixed-button');
+                                        $window.scroll(function() {
+                                        if ($window.scrollTop() >= 200) {
+                                        nav.addClass('active');
+                                        } else {
+                                        nav.removeClass('active');
+                                        }
+                                        });
+        </script>
 
-                //MESSAGEM DE CONFIRMACAO PARA APAGAR
-                @elseif(session('message2'))
-                Swal.fire({
-                icon: '{{session('messageicon2')}}',
-                        title: '{{session('message2')}}',
-                        text: '{{session('txtmessage2')}}',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Sim, Apagar!'
-                }).then((result) => {
-        if (result.isConfirmed) {
-        Swal.fire(
-                'Dado Apagado!',
-                'Dado apagado com sucesso',
-                'success'
-                )
-        }
-        })
-                //MESSAGEM DE CONFIRMACAO PARA ALTERAR
-                @elseif(session('message3'))
-                Swal.fire({
-                title: '{{session('message3')}}?',
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: 'Sim',
-                        denyButtonText: `Não`,
-                }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-        Swal.fire('Gravado!', '', 'success')
-        } else if (result.isDenied) {
-        Swal.fire('Dados não gravados', '', 'info')
-        }
-        })
-                @endif
+        <script type="text/javascript">
+            @if (session('message')) //MESSAGEM DE CONFIRMACAO PARA SUCESSO
+                    Swal.fire({
+                    icon: '{{session('messageicon')}}',
+                            title: '{{session('message')}}',
+                            text: '{{session('txtmessage')}}',
+                            showConfirmButton: true,
+                            timer: 15000,
+                            //footer: '<a href="">Why do I have this issue?</a>'
+                    })
 
-    </script>
+                    //MESSAGEM DE CONFIRMACAO PARA APAGAR
+                    @elseif(session('message2'))
+                    Swal.fire({
+                    icon: '{{session('messageicon2')}}',
+                            title: '{{session('message2')}}',
+                            text: '{{session('txtmessage2')}}',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Sim, Apagar!'
+                    }).then((result) => {
+            if (result.isConfirmed) {
+            Swal.fire(
+                    'Dado Apagado!',
+                    'Dado apagado com sucesso',
+                    'success'
+                    )
+            }
+            })
+                    //MESSAGEM DE CONFIRMACAO PARA ALTERAR
+                    @elseif(session('message3'))
+                    Swal.fire({
+                    title: '{{session('message3')}}?',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Sim',
+                            denyButtonText: `Não`,
+                    }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+            Swal.fire('Gravado!', '', 'success')
+            } else if (result.isDenied) {
+            Swal.fire('Dados não gravados', '', 'info')
+            }
+            })
+                    @endif
 
-    @stack('scripts')
-    @stack('processo')
-    @stack('especies')
-</body>
+        </script>
+
+        <script>
+
+        </script>
+
+        @stack('scripts')
+        @stack('processo')
+        @stack('especies')
+        @stack('notifica')
+        @stack('select_todos')
+
+    </body>
 
 </html>

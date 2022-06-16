@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pessoa;
-use App\Models\Funcionario;
+use App\Models\{
+    Pessoa,
+    Funcionario,
+    Processo,
+    Pais,
+    Provincia,
+    Distrito,
+};
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateFuncionario;
 use DB;
@@ -16,10 +22,6 @@ class FuncionarioController extends Controller {
         $this->funcionario = $funcionario;
     }
 
-    public function home() {
-        return view('home');
-    }
-
     public function index() {
         $funcionarios = $this->funcionario->with('pessoa')->latest()->paginate(5);
 
@@ -27,8 +29,11 @@ class FuncionarioController extends Controller {
     }
 
     public function create() {
+        $paises = Pais::get();
+        $provincias = Provincia::get();
+        $distritos = Distrito::get();
         $pessoas = Pessoa::latest()->get();
-        return view('funcionario.funcionario_create', compact('pessoas'));
+        return view('funcionario.funcionario_create', compact('pessoas', 'paises', 'provincias', 'distritos'));
     }
 
     public function store(StoreUpdateFuncionario $request) {
@@ -50,10 +55,14 @@ class FuncionarioController extends Controller {
     }
 
     public function edit($id) {
+        //dd($id);
         if (!$funcionario = Funcionario::find($id)) {
             return redirect()->back();
         }
-        return view('funcionario.funcionario_edit', compact("funcionario"));
+        $paises = Pais::get();
+        $provincias = Provincia::get();
+        $distritos = Distrito::get();
+        return view('funcionario.funcionario_edit', compact('funcionario', 'paises', 'provincias', 'distritos'));
     }
 
     public function update(StoreUpdateFuncionario $request, $id) {
@@ -77,13 +86,11 @@ class FuncionarioController extends Controller {
 
     public function search(Request $request) {
         //dd("Pesquisando por {$request->search}");
-        $funcionarios = Funcionario::where('$pessoa->funcionario->nome', 'LIKE', "%{$request->search}%") //pesquisar pelo nome
+        $funcionarios = Pessoa::where('nome', 'LIKE', "%{$request->search}%") //pesquisar pelo nome
                 ->orwhere('apelido', 'LIKE', "%{$request->search}%")     //pesquisar pelo apelido
                 ->orwhere('nuit', '=', "%{$request->search}%")           //Pesquisar pelo nuit
                 ->paginate(5);                                           //Numero de registos por pagina
         return view('funcionario.funcionario_list', compact('funcionarios'));
     }
-
-   
 
 }

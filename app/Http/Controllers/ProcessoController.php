@@ -106,9 +106,9 @@ class ProcessoController extends Controller {
         return view('processo.processo_list', compact('processos'));
     }
 
-    public function download(Request $request) {
+    public function download() {
 
-        return;
+        return respnse()->download(public_path('processos/'.$anexo));
     }
 
     public function validar() {

@@ -1,5 +1,6 @@
 @extends('layout.sisdpta')
 @section('conteudo')
+
 <div class="page-header card">
     <div class="row align-items-end">
         <div class="col-lg-8">
@@ -43,30 +44,32 @@
                 <tr class=""><th>Objecto</th><td colspan="7">{{$processo->objecto}}</td></tr>
                 <tr class=""><th>Descrição</th><td colspan="7">{{$processo->descricao}}</td></tr>
                 <tr class=""><th>Responsavel:</th><td colspan="7" class="text-c-orenge">{{$processo->requerrente}}</td></tr>
+                <tr class=""><th>Anexo:</th><td colspan="7" class="">{{$processo->anexo}}</td></tr>
 
-
-                <tr><th>Anexos</th>
-                    <td colspan="7">
-                <file src="{{ url("storage/{$processo->anexo}") }}" alt="{{ $processo->num_processo}}" style="max-width:100px;">
-                    <a class="" href="/download">
-                        Baixar Arquivos <i class="fas fa-download"></i>
-                    </a>
+                <tr><th>Anexos</th><td colspan="7"><a class="" href="{{ url('/download', $processo->anexo) }}">
+                            Baixar Arquivos <i class="fas fa-download"></i>
+                        </a>
                     </td>
-                    </tr>
-                    <tr><th></th>
-                        <td colspan="7" class="text-right">
-                            <form id="form-delete" action="{{ route('processo.destroy', $processo->id) }}" method="POST" >
-                                @csrf
-                                @method('DELETE')
-                                Apagar
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" >
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                                @include('processo.processo_delete')
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
+                </tr>
+                <tr><th></th>
+                    <td colspan="7" class="text-right">
+                        <form id="form-delete" action="{{ route('processo.destroy', $processo->id) }}" method="POST" >
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" >
+                                Apagar <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                            @include('processo.processo_delete')
+                        </form>
+                    </td>
+                </tr>
+                <tr class=""><th>
+                        <a href="{{ route('processo.processo_list') }}">
+                            <i class="fas fa-arrow-circle-left"> Voltar</i>
+                        </a></th><td colspan="7" class=""></td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>

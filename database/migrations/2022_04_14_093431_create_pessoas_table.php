@@ -21,9 +21,18 @@ class CreatePessoasTable extends Migration {
             $table->string("mae", 60);
             $table->string("estado_civil", 20);
             $table->date("data_nasc")->format('dd/mm/yyyy');
-            $table->string("nacionalidade", 30);
-            $table->string("provincia_nas", 30);
-            $table->string("distrito_nas", 30);
+            $table->unsignedBigInteger('pais_id');
+            $table->foreign('pais_id')->references('id')->on('pais')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('provincia_id');
+            $table->foreign('provincia_id')->references('id')->on('provincias')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('distrito_id');
+            $table->foreign('distrito_id')->references('id')->on('distritos')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string("bairro", 30);
             $table->string("casa", 20);
             $table->string("quart", 20);

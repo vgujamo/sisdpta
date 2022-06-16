@@ -5,6 +5,7 @@
     @csrf
     @foreach ($errors->all() as $error)
     @endforeach
+    @method('PUT')
     <div class="card">
         <div class="card-block">
             <div class="row">
@@ -97,7 +98,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="requerrente">Requerente/Entidade</label>
-                            <input class="form-control @error('requerrente') is-invalid @enderror" type="text" placeholder="Requerente/Entidade" name="requerrente" value="{{ $processo->requerrente }}" />
+                            <input class="form-control @error('requerrente') is-invalid @enderror" type="text" placeholder="Requerente/Entidade" name="requerrente" value="{{ old('requerrente', $processo->requerrente) }}" />
                             @error('requerrente')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -110,7 +111,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="recorrido">Recorrido</label>
-                            <input class="form-control @error('recorrido') is-invalid @enderror" type="text" placeholder="Recorrido (Opcional)" name="recorrido" value="{{ $processo->recorrido }}" />
+                            <input class="form-control @error('recorrido') is-invalid @enderror" type="text" placeholder="Recorrido (Opcional)" name="recorrido" value="{{ old('recorrido', $processo->recorrido) }}" />
                             @error('recorrido')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -123,7 +124,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="contaparte">Contraparte</label>
-                            <input class="form-control @error('contaparte') is-invalid @enderror" type="text" placeholder="Contraparte" name="contaparte" value="{{ $processo->contaparte }}" />
+                            <input class="form-control @error('contaparte') is-invalid @enderror" type="text" placeholder="Contraparte" name="contaparte" value="{{ old('contraparte',$processo->contaparte) }}" />
                             @error('contaparte')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -139,7 +140,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="objecto">Objecto</label>
-                            <textarea class="form-control @error('objecto') is-invalid @enderror" id="objecto" placeholder="Objecto do processo" name="objecto" rows="2" cols="10" > {{ $processo->objecto }}  </textarea>
+                            <textarea class="form-control @error('objecto') is-invalid @enderror" id="objecto" placeholder="Objecto do processo" name="objecto" rows="2" cols="10" > {{ old('objecto',$processo->objecto) }}  </textarea>
                             @error('objecto')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -154,7 +155,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="descricao">Descrição</label>
-                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo (Opcional)" name="descricao" rows="4" cols="10"> {{ $processo->descricao }} </textarea>
+                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Descrição do processo (Opcional)" name="descricao" rows="4" cols="10"> {{ old('descricao',$processo->descricao) }} </textarea>
                             @error('descricao')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>

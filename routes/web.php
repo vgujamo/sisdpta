@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Response;
 use App\Http\Controllers\{
     PessoaController,
     FuncionarioController,
     ProcessoController,
     CountryDataController,
     EspecieProcessoConroller,
-  
+    LoginController,
 };
 
 /*
@@ -24,25 +25,23 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
-
-
-Route::get('seccao_data', [EspecieProcessoConroller::class,'index'])->name('pais_data');
-Route::get('get_subseccao_by_seccao/{id}', [EspecieProcessoConroller::class,'getSubseccao'])->name('get_subseccao_by_seccao');
-Route::get('get_especie-by_subseccao/{id}', [EspecieProcessoConroller::class,'getEspecie'])->name('get_especie_by_subseccao');
-Route::get('get_especie-by_seccao/{id}', [EspecieProcessoConroller::class,'getEspecieSeccao'])->name('get_especie_by_seccao');
+Route::get('seccao_data', [EspecieProcessoConroller::class, 'index'])->name('pais_data');
+Route::get('get_subseccao_by_seccao/{id}', [EspecieProcessoConroller::class, 'getSubseccao'])->name('get_subseccao_by_seccao');
+Route::get('get_especie-by_subseccao/{id}', [EspecieProcessoConroller::class, 'getEspecie'])->name('get_especie_by_subseccao');
+Route::get('get_especie-by_seccao/{id}', [EspecieProcessoConroller::class, 'getEspecieSeccao'])->name('get_especie_by_seccao');
 
 Route::get('/especie/especie_list', [EspecieProcessoConroller::class, 'index'])->name('especie.especie_list');
 Route::get('/especie/especie_create', [EspecieProcessoConroller::class, 'create'])->name('especie.especie_create');
 Route::post('/especie', [EspecieProcessoConroller::class, 'store'])->name('especie.store');
-Route::post('/especie/{id}', [EspecieProcessoConroller::class, 'update'])->name('especie.update');
+Route::put('/especie/{id}', [EspecieProcessoConroller::class, 'update'])->name('especie.update');
 Route::delete('/especie/{id}', [EspecieProcessoConroller::class, 'destroy'])->name('especie.destroy');
 Route::get('/especie/especie_edit/{id}', [EspecieProcessoConroller::class, 'edit'])->name('especie.especie_edit');
 Route::get('/especie/especie_details/{id}', [EspecieProcessoConroller::class, 'show'])->name('especie.especie_details');
 Route::get('/especie/search', [EspecieProcessoConroller::class, 'search'])->name('especie.search');
 
-Route::get('pais-data', [CountryDataController::class,'index'])->name('pais-data');
-Route::get('get-provincia-by-pais/{id}', [CountryDataController::class,'getProvincia'])->name('get-provincia-by-pais');
-Route::get('get-distrito-by-provincia/{id}', [CountryDataController::class,'getDistrito'])->name('get-distrito-by-provincia');
+Route::get('pais_data', [CountryDataController::class, 'index'])->name('pais_data');
+Route::get('get_provincia_by_pais/{id}', [CountryDataController::class, 'getProvincia'])->name('get_provincia_by_pais');
+Route::get('get_distrito_by_provincia/{id}', [CountryDataController::class, 'getDistrito'])->name('get_distrito_by_provincia');
 
 Route::get('/pessoa/pessoa_list', [PessoaController::class, 'index'])->name('pessoa.pessoa_list');
 Route::get('/pessoa/pessoa_create', [PessoaController::class, 'create'])->name('pessoa.pessoa_create');
@@ -69,23 +68,20 @@ Route::put('/processo/{id}', [ProcessoController::class, 'update'])->name('proce
 Route::get('/processo/search', [ProcessoController::class, 'search'])->name('processo.search');
 Route::delete('/processo/{id}', [ProcessoController::class, 'destroy'])->name('processo.destroy');
 Route::get('/processo/processo_details/{id}', [ProcessoController::class, 'show'])->name('processo.processo_details'); //Falta o id
-Route::get('/processo/processo_edit/{id}', [ProcessoController::class, 'edit'])->name('processo.processo_edit');//Falta o id
-Route::get('/processo/processo_validate/', [ProcessoController::class, 'validate'])->name('processo.processo_validate');
+Route::get('/processo/processo_edit/{id}', [ProcessoController::class, 'edit'])->name('processo.processo_edit'); //Falta o id
+Route::get('/processo/processo_validar/', [ProcessoController::class, 'validar'])->name('processo.processo_validar');
+Route::get('/anexo/download', [ProcessoController::class, 'download'])->name('download');
 
+/*
+Route::get('/download', function () {
+    $anexo = public_path() . "/processos";
+    $headers = array(
+        'Content-Type:application/pdf',
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return Response::download($anexo, "Input Group.pdf", $headers);
+});
+*/
 Route::get('/', function () {
     return view('home');
 });
