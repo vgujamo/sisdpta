@@ -33,8 +33,10 @@ class StoreUpdateProcesso extends FormRequest {
             'recorrido' => 'nullable|min:3|max:50',
             'contaparte' => 'required|min:3|max:50',
             'objecto' => 'required|min:3|max:100',
-            'anexo' => 'nullable|file',
+           
             'descricao' => 'nullable|min:5|max:100',
+            'despacho_id' => 'nullable|min:1|max:100',
+            
         ];
     }
 
@@ -50,7 +52,7 @@ class StoreUpdateProcesso extends FormRequest {
         'recorrido.nullable' => 'O campo ecorrido é opcional',
         'contaparte.required' => 'O campo contrapate é obrigatorio',
         'objecto.required' => 'O campo objecto é obrigatorio',
-        'anexo.nullable' => 'O campo anexo é opcional',
+        
         'descricao.nullable' => 'O campo é opcional',
         ];
     }

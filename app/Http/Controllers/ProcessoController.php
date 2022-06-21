@@ -9,6 +9,7 @@ use App\Models\{
     Seccao,
     SubSeccao,
     Especie,
+    Parecer,
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -24,7 +25,7 @@ class ProcessoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $processos = Processo::latest()->paginate(5)->withQueryString()->fragment('processos');
+        $processos = Processo::latest()->paginate(10)->withQueryString()->fragment('processos');
         return view('processo.processo_list', compact('processos'));
     }
 
@@ -32,9 +33,10 @@ class ProcessoController extends Controller {
         $seccoes = Seccao::get();
         $subseccoes = SubSeccao::get();
         $especies = Especie::get();
+        $pareceres = Parecer::get();
         //$especie1 = Especie::get();
 
-        return view('processo.processo_create', compact('seccoes', 'subseccoes', 'especies'));
+        return view('processo.processo_create', compact('seccoes', 'subseccoes', 'especies', 'pareceres'));
     }
 
     public function store(StoreUpdateProcesso $request) {
@@ -52,7 +54,7 @@ class ProcessoController extends Controller {
     }
 
     public function show($id) {
-       
+
         if (!$processo = Processo::find($id)) {
             return redirect()->back();
         }
@@ -63,10 +65,11 @@ class ProcessoController extends Controller {
         $seccoes = Seccao::get();
         $subseccoes = SubSeccao::get();
         $especies = Especie::get();
+        $pareceres = Parecer::get();
         if (!$processo = Processo::find($id)) {
             return redirect()->back();
         }
-        return view('processo.processo_edit', compact('processo', 'seccoes', 'subseccoes', 'especies'));
+        return view('processo.processo_edit', compact('processo', 'seccoes', 'subseccoes', 'especies', 'pareceres'));
     }
 
     public function update(StoreUpdateProcesso $request, $id) {
@@ -106,13 +109,19 @@ class ProcessoController extends Controller {
         return view('processo.processo_list', compact('processos'));
     }
 
+    public function getParecer($id) {
+        $parecer = Processo::where('parecer_id', $id)->get(['nome', 'id']);
+
+        return response()->json($parecer);
+    }
+
     public function download() {
 
-        return respnse()->download(public_path('processos/'.$anexo));
+        return respnse()->download(public_path('processos/' . $anexo));
     }
 
     public function validar() {
-        
+        return view('processo.processo_validar');
     }
 
 }

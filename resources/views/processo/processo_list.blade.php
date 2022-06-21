@@ -1,19 +1,7 @@
 @extends('layout.sisdpta')
 @section('conteudo')
 @include('processo.processo_header')
-
-
-<form class="from-horizontal" method="get" id="processo_list" action="{{ route('processo.search')}}">
-    @csrf
-    <div class="row">
-        <div class="col-sm input-group form">
-            <input class="form-control" placeholder="Insira o número de processo a pesquisar" aria-label="" id="search" type="search" name="search" value="{{ request()->query('search')}}" />                          
-            <button type="submit" class="btn btn-primary" autofocus="">
-                <i class="fas fa-search"></i> Pesquisar
-            </button>
-        </div>
-    </div>
-</form>
+@include('processo.processo_search')
 
 <div class="card">
     <div class="card-header">
@@ -25,12 +13,13 @@
                     <thead>
                         <tr>
                             <th class="text-right">
-                                <input class="form-check-input" type="checkbox" id="selectTodos" value="" name="">
+                                <input class="form-check-input" type="checkbox" id="selectTodos" onclick="select_todos()">
                             </th>
                             <th>Nº de Processo</th>
                             <th>Requerente/Entidade</th>
-                            <th>Especie</th>
-                            <th>Recorrido</th>
+                            <th>Recorrido/Ex.Económico</th>
+                            <th>Espécie</th>
+                            <th>Juiz Relator</th>
                             <th>Parecer</th>
                             <th class="text-center">Acção</th>
                             <th></th>
@@ -40,13 +29,14 @@
                         @forelse($processos as $processo)
                         <tr>
                             <td class="text-right">
-                                <input class="checkItem" type="checkbox" name='check[]'>
+                                <input class="checkItem" type="checkbox" id="{{ $processo->id }}" name="list_cbx[]">
                             </td>
                             <td>{{ $processo->num_processo }}</td>
                             <td>{{ $processo->requerrente }}</td>
-                            <td>{{ $processo->especie ? $processo->especie->nome : '' }}</td>
                             <td>{{ $processo->recorrido }}</td>
-                            <td> Parecer</td>
+                            <td>{{ $processo->especie ? $processo->especie->nome : '' }}</td>
+                            <td>{{ $processo->juiz_id }}</td>
+                            <td>{{ $processo->despacho_id }}</td>
                             <!-- BOTAO PARA VISUALIZAR -->
                             <td class="text-right" >
                                 <a class="btn btn-outline-secondary" href="{{ route('processo.processo_details', $processo->id)}}">
@@ -79,12 +69,31 @@
 
 @push('select_todos')
 <script>
-    $(document).ready(function () {
-        $("#processo_list #selectTodos").on('ckek', function () {
-             alert('Ola Pais'); return;
-            //$("#processo_list input[type='checkbox']").prop('checked', this.checked);
-        });
+    function select_todos() {
+        if (jQuery('#selectTodos').prop("checked")) {
+            jQuery('input[type=checkbox]').each(function () {
+                jQuery('#' + this.id).prop('checked', true);
+            });
+        } else {
+            jQuery('input[type=checkbox]').each(function () {
+                jQuery('#' + this.id).prop('checked', false);
+            });
+        }
+
+    }
+</script>
+@endpush
+
+@push('editar_tabela')
+<script type="text/javascript">
+    $(document).ready(function(){
+        headers:{
+            'X-CSRF-Token' : $("input[name=_token]").val()
+        }
     });
+    $('#editable').Tableedit();
+    
+    
 </script>
 @endpush
 

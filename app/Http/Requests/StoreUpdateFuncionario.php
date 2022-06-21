@@ -44,6 +44,7 @@ class StoreUpdateFuncionario extends FormRequest {
     public function messages() {
         return [
         'nif.required' => 'O Campo :NIF é Obrigatório',
+        'nif.min' => 'O Campo :NIF deve ter no minimo dois caracteres',
         'nome.required' => 'O Campo :Nome é Obrigatório',
         'apelido.required' => 'O campo: Apelido é obrigatorio!',
         'sexo.nullable' => 'O campo: Sexo é obrigatorio!',

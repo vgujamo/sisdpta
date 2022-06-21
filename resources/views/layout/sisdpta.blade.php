@@ -3,13 +3,6 @@
 
     <head>
         <title>{{config('app.name')}}</title>
-        <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-              <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-              <![endif]-->
-        <!-- Meta -->
         <meta charset="utf-8">
 
         <link rel="icon" href="{{ asset('public/imj/ta1.png')}}" type="image/x-icon">
@@ -96,7 +89,7 @@
                 <nav class="navbar header-navbar pcoded-header bg-danger">
                     <div class="navbar-wrapper">
                         <div class="navbar-logo">
-                            <a class="mobile-menu" id="mobile-collapse" href="">
+                            <a class="mobile-menu" id="mobile-collapse" href="#!">
                                 <i class="ti-menu"></i>
                             </a>
                             <a href="">
@@ -241,28 +234,28 @@
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
                                             <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Menu</span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Secretaria</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="#">
+                                                <a href="{{ route('processo.processo_create')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Cadastrar Processo</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="#">
+                                                <a href="{{ route('processo.processo_list')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Listar Processos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
-                                            <li class=" ">
-                                                <a href="#">
+                                            <li class="#">
+                                                <a href="{{ route('processo.processo_list')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Menu</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -274,28 +267,28 @@
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
                                             <span class="pcoded-micon"><i class="ti-layers-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Secretaria</span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Distribuição</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="{{ route('processo.processo_list')}}">
+                                                <a href="{{ route('processo.processo_validar')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Processo</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Gerir Processos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
-                                            <li class=" ">
-                                                <a href="{{ route('processo.processo_list')}}">
+                                            <li class="#">
+                                                <a href="">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Listar Processos</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Gerir Processos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
                                                 <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Estado de Processos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -305,29 +298,29 @@
                                 <ul class="pcoded-item pcoded-left-item">                                                              
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-grid3-alt"></i></span>
+                                            <span class="pcoded-micon"><i class="ti-package"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Cartório</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
-                                                <a href="#">
+                                                <a href="{{ route('processo.processo_create')}}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"> Processo</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Cadastrar Processo(LP)</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
                                                 <a href="auth-sign-up.html">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Listar Processo(LP)</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
                                                 <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Gerir Processo</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -337,22 +330,22 @@
                                 <ul class="pcoded-item pcoded-left-item">                                                              
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Contadoria</span>
+                                            <span class="pcoded-micon"><i class="ti-files"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Relatórios</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class=" ">
                                                 <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Processos Distribuidos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
                                                 <a href="#">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Processos não Distribuidos</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -370,7 +363,7 @@
                                     <li class="pcoded-hasmenu ">
                                         <a href="javascript:void(0)">
                                             <span class="pcoded-micon"><i class="ti-stats-down"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Estatística</span>
+                                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Estatísticas</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                         <ul class="pcoded-submenu">
@@ -455,12 +448,6 @@
         <!-- modernizr js -->
         <script type="text/javascript" src="{{ asset ('public/js/modernizr/modernizr.js') }}"></script>
 
-        <!-- am chart -->
-
-
-        <!-- Todo js -->
-        <script type="text/javascript " src="{{ asset ('public/js/todo/todo.js') }}"></script>
-
         <!-- Custom js -->
         <script type="text/javascript" src="{{ asset('public/js/dashboard/custom-dashboard.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/script.js') }}"></script>
@@ -468,8 +455,6 @@
         <script src="{{ asset('public/js/pcoded.min.js')}}"></script>
         <script src="{{ asset('public/js/demo-12.js')}}"></script>
         <script src="{{ asset('public/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-
-
 
         <script>
                                         var $window = $(window);
@@ -493,7 +478,6 @@
                             timer: 15000,
                             //footer: '<a href="">Why do I have this issue?</a>'
                     })
-
                     //MESSAGEM DE CONFIRMACAO PARA APAGAR
                     @elseif(session('message2'))
                     Swal.fire({
@@ -533,15 +517,12 @@
 
         </script>
 
-        <script>
-
-        </script>
-
         @stack('scripts')
         @stack('processo')
         @stack('especies')
-        @stack('notifica')
         @stack('select_todos')
+        @stack('select_parecer')
+        @stack('editar_tabela')
 
     </body>
 

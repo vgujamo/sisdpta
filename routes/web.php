@@ -61,6 +61,7 @@ Route::delete('/funcionario/{id}', [FuncionarioController::class, 'destroy'])->n
 Route::get('/funcionario/funcionario_details/{id}', [FuncionarioController::class, 'show'])->name('funcionario.funcionario_details');
 Route::get('/funcionario/funcionario_edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionario.funcionario_edit');
 
+Route::get('get_parecer/{id}', [ProcessoController::class, 'getParecer'])->name('get_parecer');
 Route::get('/processo/processo_list', [ProcessoController::class, 'index'])->name('processo.processo_list');
 Route::get('/processo/processo_create', [ProcessoController::class, 'create'])->name('processo.processo_create');
 Route::post('/processo', [ProcessoController::class, 'store'])->name('processo.store');
