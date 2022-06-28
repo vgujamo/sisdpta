@@ -28,9 +28,8 @@
                             <select class="form-control @error('seccao_id') is-invalid @enderror"  name="seccao_id" id="seccao_dropdwn">
                                 <option disabled selected>---Selecione a Seccção---</option>
                                 @foreach($seccoes as $key =>$seccao)
-                                @dump($key)
 
-                                <option value="{{$seccao->id}}" >{{$seccao->nome}}</option>
+                                <option value="{{$seccao->id}}" {{ (old("seccao_id") == $seccao->id ? "selected" : "" ) }}>{{ $seccao->nome }}</option>
                                 @endforeach
                             </select>
                             @error('seccao_id')
@@ -48,8 +47,9 @@
                             <label form="subseccao_id">Subsecção</label>
                             <select class="form-control @error('subseccao_id') is-invalid @enderror" name="subseccao_id" id="subseccao_dropdown">
                                 <option disabled selected>---Selecione a SubSecção---</option>
-
-                                <option value=""></option>
+                                @foreach($subseccoes as $key =>$subseccao)
+                                <option value="{{ $subseccao->id }}" {{ old("subseccao_id") == $subseccao->id ? "selected" : "" }}>{{ $subseccao->nome }}</option>
+                                @endforeach
                             </select>
 
                             @error('subseccao_id')

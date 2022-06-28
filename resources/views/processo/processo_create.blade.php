@@ -5,6 +5,7 @@
     @csrf
     @foreach ($errors->all() as $error)
     @endforeach
+
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -57,11 +58,10 @@
                             <select class="form-control @error('seccao_id') is-invalid @enderror"  name="seccao_id" id="seccao_dropdwn">
                                 <option disabled selected>---Selecione a Seccção---</option>
                                 @foreach($seccoes as $key =>$seccao)
-                                @dump($key)
-
-                                <option value="{{$seccao->id  }}" >{{$seccao->nome}}</option>
+                                <option value="{{ $seccao->id }}" {{ (old("seccao_id") == $seccao->id ? "selected" : "" ) }} >{{ $seccao->nome }}</option>
                                 @endforeach
                             </select>
+
                             @error('seccao_id')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -76,8 +76,9 @@
                             <label form="subseccao_id">Subsecção</label>
                             <select class="form-control @error('subseccao_id') is-invalid @enderror" name="subseccao_id" id="subseccao_dropdown">
                                 <option disabled selected>--Selecione a SubSecção--</option>
-
-                                <option value=""></option>
+                                @foreach($subseccoes as $key =>$subseccao)
+                                <option value="{{ $subseccao->id }}" {{ (old("subseccao_id") == $subseccao->id ? "selected" : "" ) }}>{{ $subseccao->nome }}</option>
+                                @endforeach
                             </select>
                             @error('subseccao_id')
                             <span class="invalid-feedback" role="alert">
@@ -93,8 +94,9 @@
                             <label form="especie_id">Especie</label>
                             <select class="form-control @error('especie_id') is-invalid @enderror" name="especie_id" id="especie_dropdown">
                                 <option disabled selected>--Selecione a Especie--</option>
-
-                                <option value=""></option>
+                                @foreach($especies as $key =>$especie)
+                                <option value="{{ $especie->id }}" {{ (old("especie_id") == $especie->id ? "selected" : "" ) }}> {{ $especie->nome }} </option>
+                                @endforeach
                             </select>
                             @error('especie_id')
                             <span class="invalid-feedback" role="alert">
@@ -123,7 +125,7 @@
                 <div class="col-sm col-sm">
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
-                            <label form="recorrido">Recorrido</label>
+                            <label form="recorrido">Recorrido/Ex.Económico</label>
                             <input class="form-control @error('recorrido') is-invalid @enderror" type="text" placeholder="Recorrido (Opcional)" name="recorrido" value="{{ old('recorrido') }}" />
                             @error('recorrido')
                             <span class="invalid-feedback" role="alert">
@@ -200,10 +202,10 @@
                                 <div class="row">
                                     <div class="form-group col-sm-3 input-group-sm">
                                         <select class="form-control @error('parecer_id') is-invalid @enderror" name="parecer_id" id="parecer_dropdown">
-                                            <option disable selected>--Selecione o Parecer--</option>
+                                            <option disabled selected>--Selecione o Parecer--</option>
                                             @foreach($pareceres as $key =>$parecer)
-                                            @dump($key)
-                                            <option value="{{$parecer->id  }}" >{{$parecer->nome}}</option>
+
+                                            <option value="{{$parecer->id  }}" {{ ( old("parecer_id") == $parecer->id ? "selected" : "") }}> {{$parecer->nome}}</option>
                                             @endforeach
                                         </select>
                                         @error('parecer_id')
@@ -230,7 +232,7 @@
                                 <div class="form-group col-sm input-group-sm">
                                     <label form="anexo">Anexo</label>
                                     <input class="form-control @error('anexo') is-invalid @enderror" type="file"
-                                           name="anexo" multiple="" wire:model="anexo" accept="" multiple=""/>
+                                           name="anexos[]" wire:model="anexo" accept="" multiple="" value="{{ old('processo->anexo')}}"/>
                                     @error('anexo')
                                     <span class="invalid-feedback" role="alert">
                                         <b><i>{{$message}}</i></b>

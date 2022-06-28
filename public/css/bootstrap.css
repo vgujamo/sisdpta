@@ -6306,7 +6306,7 @@ a.close.disabled {
   margin-left: 0.5rem;
 }
 
-.bs-popover-right > .arrow, .bs-popover-auto[x-placement^="right"] > .arrow {
+.bs-popover-right => .arrow, .bs-popover-auto[x-placement^="right"] > .arrow {
   left: calc(-0.5rem - 1px);
   width: 0.5rem;
   height: 1rem;

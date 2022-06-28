@@ -41,30 +41,50 @@ class StoreUpdateFuncionario extends FormRequest {
         ];
     }
 
-    public function messages() {
+    public function attributes() {
         return [
-        'nif.required' => 'O Campo :NIF é Obrigatório',
-        'nif.min' => 'O Campo :NIF deve ter no minimo dois caracteres',
-        'nome.required' => 'O Campo :Nome é Obrigatório',
-        'apelido.required' => 'O campo: Apelido é obrigatorio!',
-        'sexo.nullable' => 'O campo: Sexo é obrigatorio!',
-        'pai.required' => 'O campo: Pai é obrigatorio!',
-        'mae.required' => 'O campo: Mãe obrigatorio!',
-        'estado_civil.required' => 'O campo: Estado Civil é obrigatorio!',
-        'data_nasc.required' => 'O campo: Data de Nascimento é obrigatorio!',
-        'pais_id.required' => 'O campo: Nacionalidade é obrigatorio!',
-        'provincia_id.required' => 'O campo: Provincia é obrigatorio!',
-        'distrito_id.required' => 'O campo: Distrito é obrigatorio!',
-        'bairro.required' => 'O campo: Bairro é obrigatorio!',
-        'casa.required' => 'O campo: Nº de casa é obrigatorio!',
-        'quart.required' => 'O campo: Quarteirão é obrigatorio!',
-        'rua.required' => 'O campo: Rua é obrigatorio!',
-        'email.required' => 'O campo: email é obrigatorio!',
-        'contacto1.required' => 'O campo: Contacto é obrigatorio!',
-        'tipo_doc.required' => 'O campo: Tipo de Documento é obrigatorio!',
-        'num_doc.required' => 'O campo: Numero do Documento é obrigatorio!',
-        'nuit.required' => 'O campo: NUIT é obrigatorio!'
+            'nif' => 'NIF',
+             'pai' => 'nome do Pai',
+            'mae' => 'nome do Mãe',
+            'data_nasc' => 'data de nascimento',
+            'pais_id' => 'Pais',
+            'provincia_id' => 'Provincia',
+            'distrito_id' => 'Distrito',
+            'casa' => 'N da casa',
+            'quart' => 'quarteirão',
+            'contacto1' => 'contacto',
+            'contacto2' => 'contacto alternativo',
+            'tipo_doc' => 'tipo de documento',
+            'num_doc' => 'numero de documento',
         ];
     }
 
+    /*
+      public function messages() {
+      return [
+      'nif.required' => 'O Campo :NIF é Obrigatório',
+      'nif.min' => 'O Campo :NIF deve ter no minimo dois caracteres',
+      'nome.required' => 'O Campo :Nome é Obrigatório',
+      'apelido.required' => 'O campo: Apelido é obrigatorio!',
+      'sexo.nullable' => 'O campo: Sexo é obrigatorio!',
+      'pai.required' => 'O campo: Pai é obrigatorio!',
+      'mae.required' => 'O campo: Mãe obrigatorio!',
+      'estado_civil.required' => 'O campo: Estado Civil é obrigatorio!',
+      'data_nasc.required' => 'O campo: Data de Nascimento é obrigatorio!',
+      'pais_id.required' => 'O campo: Nacionalidade é obrigatorio!',
+      'provincia_id.required' => 'O campo: Provincia é obrigatorio!',
+      'distrito_id.required' => 'O campo: Distrito é obrigatorio!',
+      'bairro.required' => 'O campo: Bairro é obrigatorio!',
+      'casa.required' => 'O campo: Nº de casa é obrigatorio!',
+      'quart.required' => 'O campo: Quarteirão é obrigatorio!',
+      'rua.required' => 'O campo: Rua é obrigatorio!',
+      'email.required' => 'O campo: email é obrigatorio!',
+      'contacto1.required' => 'O campo: Contacto é obrigatorio!',
+      'tipo_doc.required' => 'O campo: Tipo de Documento é obrigatorio!',
+      'num_doc.required' => 'O campo: Numero do Documento é obrigatorio!',
+      'nuit.required' => 'O campo: NUIT é obrigatorio!'
+      ];
+      }
+     * 
+     */
 }

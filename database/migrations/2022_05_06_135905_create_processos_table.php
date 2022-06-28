@@ -29,7 +29,7 @@ class CreateProcessosTable extends Migration {
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->unsignedBigInteger('juiz_id');
-            $table->foreign('juiz_id')->references('id')->on('juiz')
+            $table->foreign('juiz_id')->references('id')->on('juizs')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->string('requerrente', 50);
@@ -40,14 +40,6 @@ class CreateProcessosTable extends Migration {
             $table->string('descricao', 100)->nullable();
             $table->unsignedBigInteger('despacho_id');
             $table->foreign('despacho_id')->references('id')->on('despachos')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            $table->unsignedBigInteger('parecer_id');
-            $table->foreign('parecer_id')->references('id')->on('parecers')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->softDeletes();

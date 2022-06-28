@@ -5,7 +5,7 @@
         <title>{{config('app.name')}}</title>
         <meta charset="utf-8">
 
-        <link rel="icon" href="{{ asset('public/imj/ta1.png')}}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('imj/ta1.png')}}" type="image/x-icon">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
@@ -14,28 +14,28 @@
         <meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
         <meta name="author" content="CodedThemes">
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('public/css/all.css') }}" />
-        <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.css') }}" />
-        <link type="text/css" href="{{ asset('public/jquery-ui-1.12.1/jquery-ui.theme.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/all.css') }}" />
+        <link type="text/css" href="{{ asset('jquery-ui-1.12.1/jquery-ui.css') }}" />
+        <link type="text/css" href="{{ asset('jquery-ui-1.12.1/jquery-ui.theme.css') }}" />
         <!-- Required Fremwork -->
-        <script type="text/javascript" src="{{ asset('public/jquery-ui-1.12.1/jquery-ui.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/jquery.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery.mCustomScrollbar.css') }}">
-        <script type="text/javascript" src="{{ asset('public/js/popper.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/bootstrap.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap/css/bootstrap.min.css') }}">
+        <script type="text/javascript" src="{{ asset('jquery-ui-1.12.1/jquery-ui.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+        <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
         <!-- themify-icons line icon -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/icon/themify-icons/themify-icons.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('icon/themify-icons/themify-icons.css') }}">
         <!-- ico font -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/icon/icofont/css/icofont.css') }}">
-        <script type="text/javascript" src="{{ asset('public/js/jquery.maskMoney.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('icon/icofont/css/icofont.css') }}">
+        <script type="text/javascript" src="{{ asset('js/jquery.maskMoney.min.js') }}"></script>
         <!-- Style.css -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
-        <script type="text/javascript" src="{{ asset('public/js/sweetalert2.all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 
-        <script type="text/javascript" async="" src="{{ asset('public/analytics.js.transferir') }}"></script>
-        <script async="" src="{{ asset('public/js/js') }}"></script>
+        <script type="text/javascript" async="" src="{{ asset('analytics.js.transferir') }}"></script>
+        <script async="" src="{{ asset('js/js') }}"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -86,14 +86,14 @@
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
-                <nav class="navbar header-navbar pcoded-header bg-danger">
+                <nav class="navbar header-navbar pcoded-header" style="background: #c10f1f">
                     <div class="navbar-wrapper">
                         <div class="navbar-logo">
                             <a class="mobile-menu" id="mobile-collapse" href="#!">
                                 <i class="ti-menu"></i>
                             </a>
-                            <a href="">
-                                <img class="img-fluid " src="{{ asset('public/imj/logo.PNG')}}" width="200" alt="Tribunal Administrativo" />
+                            <a href="{{route('home')}}">
+                                <img class="img-fluid " src="{{ asset('imj/logo.PNG')}}" width="200" alt="Tribunal Administrativo" />
 
                             </a>
                             <a class="mobile-options">
@@ -143,7 +143,7 @@
 
                                 <li class="user-profile header-notification">
                                     <a href="#!">
-                                        <span>User</span>
+                                        <span></span>
                                         <i class="ti-angle-down"></i>
                                     </a>
                                     <ul class="show-notification profile-notification">
@@ -158,7 +158,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="auth-normal-sign-in.html">
+                                            <a href="{{ route('auth.logout') }}">
                                                 <i class="ti-power-off"></i> Sair
                                             </a>
                                         </li>
@@ -172,12 +172,12 @@
                 <div class="pcoded-main-container">
                     <div class="pcoded-wrapper">
                         <nav class="pcoded-navbar">
-                            <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                            <div class="sidebar_toggle"><a href="{{route('home')}}"><i class="icon-close icons"></i></a></div>
                             <div class="pcoded-inner-navbar main-menu">
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="active">
-                                        <a href="index.html">
-                                            <span class="pcoded-micon"><i class="ti-dashboard"></i><b>D</b></span>
+                                        <a href="{{ route('home') }}">
+                                            <span class="pcoded-micon"><i class="ti-dashboard"></i><b></b></span>
                                             <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
@@ -224,6 +224,31 @@
                                                 <a href="{{ route('especie.especie_list') }}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Especie de Processos</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">                                                              
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="ti-settings"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Gestao de utilizadores</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{ route('auth.cadastrar') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Novo user</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{ route('pessoa.pessoa_create') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Pessoa</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
@@ -428,7 +453,7 @@
                     <div id="styleSelector">
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-right" style="background: #c10f1f">
                     @include("layout.footer")
                 </div>
 
@@ -437,24 +462,24 @@
         </div>
 
 
-        <script type="text/javascript" src="{{ asset('public/js/jquery/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/jquery-ui/jquery-ui.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/popper.js/popper.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/popper.js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap/js/bootstrap.min.js') }}"></script>
 
         <!-- jquery slimscroll js -->
         <script type="text/javascript" src="{{ asset ('js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
         <!-- modernizr js -->
-        <script type="text/javascript" src="{{ asset ('public/js/modernizr/modernizr.js') }}"></script>
+        <script type="text/javascript" src="{{ asset ('js/modernizr/modernizr.js') }}"></script>
 
         <!-- Custom js -->
-        <script type="text/javascript" src="{{ asset('public/js/dashboard/custom-dashboard.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/script.js') }}"></script>
-        <script type="text/javascript " src="{{ asset('public/js/SmoothScroll.js') }}"></script>
-        <script src="{{ asset('public/js/pcoded.min.js')}}"></script>
-        <script src="{{ asset('public/js/demo-12.js')}}"></script>
-        <script src="{{ asset('public/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/dashboard/custom-dashboard.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+        <script type="text/javascript " src="{{ asset('js/SmoothScroll.js') }}"></script>
+        <script src="{{ asset('js/pcoded.min.js')}}"></script>
+        <script src="{{ asset('js/demo-12.js')}}"></script>
+        <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
         <script>
                                         var $window = $(window);

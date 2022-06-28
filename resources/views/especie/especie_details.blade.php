@@ -22,7 +22,7 @@
         <div class="table-responsive">
             <table class="table">
                 <thead>
-                    <tr class="bg-secondary">
+                    <tr class="bg-danger">
                         <th>#</th>
                         <th>Especie</th>
                         <th>Secção</th>
@@ -31,12 +31,12 @@
                 </thead>
                 <tbody>
 
-                <th>#</th>
-                <th>{{$especie->nome}}</th>
-                <th>{{$especie->seccao ? $especie->seccao->nome : ''}}</th>
-                <th>{{$especie->subseccao ? $especie->subseccao->nome : ''}}</th>
-                <tr class=""><th>Descrição</th><td colspan="7">{{$especie->descricao}}</td></tr>
-                <td colspan="1" class="text-left"><a class="btn btn-bg-c-lite-green" href=" {{ route('especie.especie_list')}}">
+                <th>{{ $especie->id }}</th>
+                <th>{{ $especie->nome }}</th>
+                <th>{{ $especie->seccao ? $especie->seccao->nome : '' }}</th>
+                <th>{{ $especie->subseccao ? $especie->subseccao->nome : ''}}</th>
+                <tr class=""><th>Descrição</th><td colspan="7">{{$especie->descricao }}</td></tr>
+                <td colspan="1" class="text-left"><a class="btn btn-bg-c-lite-green" href=" {{ route('especie.especie_list') }}">
                         <i class="fas fa-arrow-alt-circle-left"></i>Voltar</a></td>
                 <td colspan="6" class="text-right">
                     <form id="form-delete" action="{{ route('especie.destroy', $especie->id) }}" method="POST" >

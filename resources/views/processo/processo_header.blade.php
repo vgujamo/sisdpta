@@ -7,7 +7,7 @@
             <a class="btn btn-outline-secondary" href="{{ route('processo.processo_list') }}">
                 <i class="fas fa-list"> Parecer</i>
             </a>
-            <a class="btn btn-outline-success" href="{{ route('processo.processo_list') }}">
+            <a class="btn btn-outline-success" href="#">
                 <i class="fas fa-print"> Imprimir</i>
             </a>
         </div>

@@ -26,7 +26,7 @@ class EspecieProcessoConroller extends Controller {
         return view('especie.especie_create', compact('seccoes', 'subseccoes', 'especies'));
     }
 
-    public function store(StoreUpdateEspecie $request, $id) {
+    public function store(StoreUpdateEspecie $request) {
         //dd($request->nome);
         $especie = Especie::create($request->all());
         return redirect()->route('especie.especie_list')
@@ -47,6 +47,7 @@ class EspecieProcessoConroller extends Controller {
         $seccoes = Seccao::get();
         $subseccoes = SubSeccao::get();
         $especies = Especie::get();
+
         if (!$especie = Especie::find($id)) {
             return redirect()->back();
         }
@@ -55,7 +56,7 @@ class EspecieProcessoConroller extends Controller {
     }
 
     public function update(StoreUpdateEspecie $request, $id) {
-       // dd($id);
+        // dd($id);
         if (!$especie = Especie::find($id)) {
             return redirect()->back();
         }

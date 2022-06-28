@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJuizsTable extends Migration {
+class CreateSubSeccaosTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreateJuizsTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('juizs', function (Blueprint $table) {
+        Schema::create('sub_seccaos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pessoa_id');
-            $table->foreign('pessoa_id')->references('id')->on('pessoas')
+            $table->string('nome', 60);
+            $table->unsignedBigInteger('seccao_id');
+            $table->foreign('seccao_id')->references('id')->on('seccaos')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            $table->string('descricao', 100);
+            $table->string('descricao', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,7 +31,7 @@ class CreateJuizsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('juizs');
+        Schema::dropIfExists('sub_seccaos');
     }
 
 }

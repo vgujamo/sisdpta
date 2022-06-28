@@ -2,11 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/processo/processo_details.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/resources/views/processo/processo_create.blade.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/routes/web.php</file>
-            <file>file:/C:/wamp64/www/sisdpta/app/Http/Controllers/ProcessoController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

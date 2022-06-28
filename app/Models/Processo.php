@@ -62,5 +62,8 @@ class Processo extends Model {
                     'nome' => 'N/A',
                 ]);
     }
+    public function anexos() {
+        return $this->morphMany(Anexo::class, 'anexavel');
+    }
 
 }

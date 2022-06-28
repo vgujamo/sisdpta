@@ -20,7 +20,6 @@
                             <th>Recorrido/Ex.Económico</th>
                             <th>Espécie</th>
                             <th>Juiz Relator</th>
-                            <th>Parecer</th>
                             <th class="text-center">Acção</th>
                             <th></th>
                         </tr>
@@ -36,7 +35,6 @@
                             <td>{{ $processo->recorrido }}</td>
                             <td>{{ $processo->especie ? $processo->especie->nome : '' }}</td>
                             <td>{{ $processo->juiz_id }}</td>
-                            <td>{{ $processo->despacho_id }}</td>
                             <!-- BOTAO PARA VISUALIZAR -->
                             <td class="text-right" >
                                 <a class="btn btn-outline-secondary" href="{{ route('processo.processo_details', $processo->id)}}">
@@ -86,14 +84,14 @@
 
 @push('editar_tabela')
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         headers:{
             'X-CSRF-Token' : $("input[name=_token]").val()
         }
     });
     $('#editable').Tableedit();
-    
-    
+
+
 </script>
 @endpush
 

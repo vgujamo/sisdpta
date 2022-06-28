@@ -26,19 +26,23 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs md-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#processo" role="tab">Detalhes</a>
+                        <a class="nav-link active" data-toggle="tab" href="#processo" role="tab">
+                             <i class="ti-list"></i> Detalhes</a>
                         <div class="slide"></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#parecer" role="tab">Parecer</a>
+                        <a class="nav-link" data-toggle="tab" href="#parecer" role="tab">
+                             <i class="ti-pencil"></i> Parecer</a>
                         <div class="slide"></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#anexo" role="tab">Anexo</a>
+                        <a class="nav-link" data-toggle="tab" href="#anexo" role="tab">
+                             <i class="ti-clip"></i> Anexo</a>
                         <div class="slide"></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Definicoes</a>
+                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">
+                             <i class="ti-settings"></i> Definicoes</a>
                         <div class="slide"></div>
                     </li>
                 </ul>
@@ -98,17 +102,20 @@
 
                     </div>
                     <div class="tab-pane" id="anexo" role="tabpanel">
+                        @foreach($processo->anexos as $anexo)
                         <div class="row">
                             <div class="col-sm">
-                                {{$processo->anexo}}
+                                {{$anexo->nome}}
                             </div>
                             <div class="col-sm">
-                                <a class="" href="{{ url('/download', $processo->anexo) }}">
-                                    Baixar Arquivos <i class="fas fa-download"></i>
+                                <a class="" href="{{ $anexo->ficheiro }}" target="_blank">
+                                    Baixar Arquivo/s <i class="fas fa-download"></i>
                                 </a>
                             </div>                           
 
                         </div>
+
+                        @endforeach
                     </div>
                     <div class="tab-pane" id="settings3" role="tabpanel">
                         <form id="form-delete" action="{{ route('processo.destroy', $processo->id) }}" method="POST" >

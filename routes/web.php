@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Dompdf\Dompdf;
 use Illuminate\Http\Response;
 use App\Http\Controllers\{
     PessoaController,
@@ -9,21 +10,31 @@ use App\Http\Controllers\{
     CountryDataController,
     EspecieProcessoConroller,
     LoginController,
+    HomeController,
+    AutenticaController,
 };
 
-/*
-  |--------------------------------------------------------------------------
-  | Web Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register web routes for your application. These
-  | routes are loaded by the RouteServiceProvider within a group which
-  | contains the "web" middleware group. Now create something great!
-  |
- */
 Route::middleware(['auth'])->group(function () {
     
 });
+
+Route::get('/auth/login', [AutenticaController::class, 'login'])->name('auth.login');
+Route::get('/auth/cadastrar', [AutenticaController::class, 'cadastrar'])->name('auth.cadastrar');
+Route::post('/auth/gravar', [AutenticaController::class, 'gravar'])->name('auth.gravar');
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('voltar', function () {
+    return redirect()->back()->withInput();
+})->name('voltar');
+Route::get('/', function () {
+    return view('home');
+});
+
+
+
+Route::post('/auth/check', [AutenticaController::class, 'check'])->name('auth.check');
+Route::get('/auth/logout', [AutenticaController::class, 'logout'])->name('auth.logout');
 
 Route::get('seccao_data', [EspecieProcessoConroller::class, 'index'])->name('pais_data');
 Route::get('get_subseccao_by_seccao/{id}', [EspecieProcessoConroller::class, 'getSubseccao'])->name('get_subseccao_by_seccao');
@@ -73,19 +84,6 @@ Route::get('/processo/processo_edit/{id}', [ProcessoController::class, 'edit'])-
 Route::get('/processo/processo_validar/', [ProcessoController::class, 'validar'])->name('processo.processo_validar');
 Route::get('/anexo/download', [ProcessoController::class, 'download'])->name('download');
 
-/*
-Route::get('/download', function () {
-    $anexo = public_path() . "/processos";
-    $headers = array(
-        'Content-Type:application/pdf',
-    );
-
-    return Response::download($anexo, "Input Group.pdf", $headers);
-});
-*/
-Route::get('/', function () {
-    return view('home');
-});
-/*
+/* 
  require __DIR__ . '/auth.php'; 
  */

@@ -24,7 +24,7 @@ class CreateEspeciesTable extends Migration {
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->string('descricao')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');

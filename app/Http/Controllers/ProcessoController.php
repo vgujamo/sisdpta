@@ -40,22 +40,37 @@ class ProcessoController extends Controller {
     }
 
     public function store(StoreUpdateProcesso $request) {
-        $data = $request->all();
-        if ($request->anexo->isValid()) {
-            $nameFile = Str::of($request->num_processo)->slug('-') . '.' . $request->anexo->getClientOriginalExtension();
-            $anexo = $request->anexo->storeAs('processos', $nameFile);
-            $data['file'] = $anexo;
+
+        try {
+            return \Illuminate\Support\Facades\DB::transaction(function () use ($request) {
+                        $processo = Processo::create($request->all());
+
+                        if ($request->anexos) {
+                            foreach ($request->anexos as $anexo) {
+                                $processo->anexos()->create([
+                                    'nome' => $anexo->getClientOriginalName(),
+                                    'descricao' => Str::of($request->num_processo)->slug('-'),
+                                    'ext' => $anexo->guessClientExtension(),
+                                    'tamanho' => $anexo->getSize(),
+                                    'url' => $anexo->store('processos'),
+                                ]);
+                            }
+                        }
+
+                        return redirect()->route('processo.processo_list')
+                                ->with('messageicon', 'success')
+                                ->with('message', 'Dados Inseridos com sucesso!')
+                                ->with('txtmessage', 'Clique OK para continuar.');
+                    });
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back();
         }
-        $processo = Processo::create($data);
-        return redirect()->route('processo.processo_list')
-                        ->with('messageicon', 'success')
-                        ->with('message', 'Dados Inseridos com sucesso!')
-                        ->with('txtmessage', 'Clique OK para continuar.');
     }
 
     public function show($id) {
 
-        if (!$processo = Processo::find($id)) {
+        if (!$processo = Processo::with('anexos')->find($id)) {
             return redirect()->back();
         }
         return view('processo.processo_details', compact('processo'));
@@ -76,24 +91,32 @@ class ProcessoController extends Controller {
         if (!$processo = Processo::find($id)) {
             return redirect()->back();
         }
+        try {
+            return \Illuminate\Support\Facades\DB::transaction(function () use ($request) {
+                        $processo = Processo::update($request->all());
 
-        $data = $request->all();
+                        if ($request->anexos) {
+                           
 
-        if ($request->anexo->isValid()) {
-            if (Storage::exists($processo->anexo))
-                Storage::delete($processo->anexo);
-
-            $nameFile = Str::of($request->num_processo)->slug('-') . '.' . $request->anexo->getClientOriginalExtension();
-            $anexo = $request->anexo->storeAs('processos', $nameFile);
-            $data['image'] = $anexo;
+                            foreach ($request->anexos as $anexo) {
+                                $processo->anexos()->create([
+                                    'nome' => $anexo->getClientOriginalName(),
+                                    'descricao' => Str::of($request->num_processo)->slug('-'),
+                                    'ext' => $anexo->guessClientExtension(),
+                                    'tamanho' => $anexo->getSize(),
+                                    'url' => $anexo->store('processos'),
+                                ]);
+                            }
+                        }
+                        return redirect()->route('processo.processo_list')
+                                ->with('messageicon', 'success')
+                                ->with('message', 'Dados Actualizados com sucesso!')
+                                ->with('txtmessage', 'Clique OK para continuar.');
+                    });
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back();
         }
-
-        $processo->update($data);
-
-        return redirect()->route('processo.processo_list')
-                        ->with('messageicon', 'success')
-                        ->with('message', 'Dados Actualizados com sucesso!')
-                        ->with('txtmessage', 'Clique OK para continuar.');
     }
 
     public function destroy($id) {

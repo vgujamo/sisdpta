@@ -21,8 +21,6 @@ class StoreUpdateProcesso extends FormRequest {
      * @return array
      */
     public function rules() {
-        
-       
         return [
             'num_processo' => 'required|min:3|max:50',
             'data_entrada' => 'required|min:3|max:50',
@@ -33,28 +31,42 @@ class StoreUpdateProcesso extends FormRequest {
             'recorrido' => 'nullable|min:3|max:50',
             'contaparte' => 'required|min:3|max:50',
             'objecto' => 'required|min:3|max:100',
-           
+            'anexo.*' => 'mimes:pdf',
+            'parecer_id' => 'required',
             'descricao' => 'nullable|min:5|max:100',
             'despacho_id' => 'nullable|min:1|max:100',
-            
         ];
     }
 
-    public function messages() {
-       return [
-        'num_processo.required' => 'O campo de processso é obrigatorio',
-        'num_processo.unique' => 'O numero de processo ja existe',
-        'data_entrada.required' => 'O campo data de entrada é obrigatorio',
-        'seccao_id.required' => 'O campo secção é obrigatorio',
-        'subseccao_id.required' => 'O campo subsecção é obrigatorio',
-        'especie_id.required' => 'O campo especie é  obrigatorio',
-        'requerrente.required' => 'O campo requerente é obrigatorio',
-        'recorrido.nullable' => 'O campo ecorrido é opcional',
-        'contaparte.required' => 'O campo contrapate é obrigatorio',
-        'objecto.required' => 'O campo objecto é obrigatorio',
-        
-        'descricao.nullable' => 'O campo é opcional',
+    public function attributes() {
+        return [
+            'num_processo' => 'numero de processo',
+            'data_entrada' => 'data de entrada',
+            'seccao_id' => 'seccao',
+            'subseccao_id' => 'subseccao',
+            'especie_id' => 'especie',
+            'objecto' => 'objecto do processo',
+            'parecer_id' => 'parecer',
         ];
     }
 
+    /*
+      public function messages() {
+      return [
+      'num_processo.required' => 'O campo de processso é obrigatorio',
+      'num_processo.unique' => 'O numero de processo ja existe',
+      'data_entrada.required' => 'O campo data de entrada é obrigatorio',
+      'seccao_id.required' => 'O campo secção é obrigatorio',
+      'subseccao_id.required' => 'O campo subsecção é obrigatorio',
+      'especie_id.required' => 'O campo especie é  obrigatorio',
+      'requerrente.required' => 'O campo requerente é obrigatorio',
+      'recorrido.nullable' => 'O campo ecorrido é opcional',
+      'contaparte.required' => 'O campo contrapate é obrigatorio',
+      'objecto.required' => 'O campo objecto é obrigatorio',
+      'parecer_id.required' => 'O campo parecer é obrigatorio',
+      'descricao.nullable' => 'O campo é opcional',
+      ];
+      }
+     * 
+     */
 }
