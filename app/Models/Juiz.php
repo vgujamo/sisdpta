@@ -21,4 +21,27 @@ class Juiz extends Model {
         "data_final",
     ];
 
+    public function attributes() {
+        [
+            'seccao_id' => 'Seccao',
+            'subseccao_id' => 'SubSeccao',
+        ];
+    }
+
+    public function pessoa() {
+        return $this->belongsTo(Pessoa::class)
+                        ->withDefault([
+                            'nome' => 'N\A',
+                            'apelido' => 'N\A',
+        ]);
+    }
+
+    public function pais() {
+        return $this->belongsTo(Juiz::class);
+    }
+
+    public function seccao() {
+        return $this->belongsTo(Seccao::class);
+    }
+
 }

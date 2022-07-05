@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     ProcessoController,
     CountryDataController,
     EspecieProcessoConroller,
+    JuizController,
     LoginController,
     HomeController,
     AutenticaController,

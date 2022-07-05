@@ -39,6 +39,10 @@ class Pessoa extends Model {
     public function funcionario() {
         return $this->hasOne(Funcionario::class);
     }
+    
+    public function juiz() {
+        return $this->hasOne(Juiz::class);
+    }
 
     public function pais() {
         return $this->belongsTo(Pais::class)

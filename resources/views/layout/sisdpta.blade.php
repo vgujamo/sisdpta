@@ -198,6 +198,20 @@
                                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar pessoa</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
+                                            <li class=" ">
+                                                <a href="{{ route('funcionario.funcionario_list') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar Funcionario</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="{{ route('juiz.juiz_list') }}">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar Juizes</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
                                             </li>
                                             <li class="">
                                                 <a href="{{ route('pessoa.pessoa_create') }}">
@@ -207,16 +221,16 @@
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="{{ route('funcionario.funcionario_list') }}">
+                                                <a href="{{ route('funcionario.funcionario_create') }}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Listar Funcionario</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Funcionario</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="{{ route('funcionario.funcionario_create') }}">
+                                                <a href="{{ route('juiz.juiz_create') }}">
                                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Funcionario</span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cadastrar Juiz</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
