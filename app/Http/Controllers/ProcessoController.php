@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use livewire\WithFileUploads;
 use App\Http\Requests\StoreUpdateProcesso;
+use DB;
 
 class ProcessoController extends Controller {
 
@@ -42,28 +43,35 @@ class ProcessoController extends Controller {
     public function store(StoreUpdateProcesso $request) {
 
         try {
-            return \Illuminate\Support\Facades\DB::transaction(function () use ($request) {
-                        $processo = Processo::create($request->all());
+            DB::beginTransaction();
+            $processo = Processo::create($request->all());
 
-                        if ($request->anexos) {
-                            foreach ($request->anexos as $anexo) {
-                                $processo->anexos()->create([
-                                    'nome' => $anexo->getClientOriginalName(),
-                                    'descricao' => Str::of($request->num_processo)->slug('-'),
-                                    'ext' => $anexo->guessClientExtension(),
-                                    'tamanho' => $anexo->getSize(),
-                                    'url' => $anexo->store('processos'),
-                                ]);
-                            }
-                        }
+            if ($request->anexos) {
+                foreach ($request->anexos as $anexo) {
+                    $processo->anexos()->create([
+                        'nome' => $anexo->getClientOriginalName(),
+                        'descricao' => Str::of($request->num_processo)->slug('-'),
+                        'ext' => $anexo->guessClientExtension(),
+                        'tamanho' => $anexo->getSize(),
+                        'url' => $anexo->store('processos'),
+                    ]);
+                }
+            }
 
-                        return redirect()->route('processo.processo_list')
-                                ->with('messageicon', 'success')
-                                ->with('message', 'Dados Inseridos com sucesso!')
-                                ->with('txtmessage', 'Clique OK para continuar.');
-                    });
+            $processo->pareceres()->create([
+                'nome' => $request->parecer,
+                'processo' => $processo->id,
+                'descricao_parecer' => $request->descricao_parecer,
+                'user' => 'N/A', #auth()->user()->id,
+            ]);
+            DB::commit();
+            return redirect()->route('processo.processo_list')
+                            ->with('messageicon', 'success')
+                            ->with('message', 'Dados Inseridos com sucesso!')
+                            ->with('txtmessage', 'Clique OK para continuar.');
         } catch (\Exception $e) {
             dd($e->getMessage());
+            DB::rollback();
             return redirect()->back();
         }
     }
@@ -96,7 +104,7 @@ class ProcessoController extends Controller {
                         $processo = Processo::update($request->all());
 
                         if ($request->anexos) {
-                           
+
 
                             foreach ($request->anexos as $anexo) {
                                 $processo->anexos()->create([

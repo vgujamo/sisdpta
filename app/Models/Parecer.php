@@ -14,14 +14,17 @@ class Parecer extends Model {
     protected $table = 'parecers';
     protected $fillable = [
         'nome',
-        'despacho_id',
-        'processo_id',
-        'user_id',
-        'descricao',
+        'processo',
+        'descricao_parecer',
+        'user',
     ];
-    
+
     public function processo() {
         return $this->hasMany(Processo::class);
+    }
+
+    public function parecer() {
+        return $this->morphTo();
     }
 
 }

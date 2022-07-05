@@ -26,8 +26,7 @@ class Processo extends Model {
         "anexo",
         "descricao",
         "despacho_id",
-        "parecer_id",
-        "user_id",
+        
     ];
     protected $attributes = [
         'recorrido' => 'N/A',
@@ -53,15 +52,12 @@ class Processo extends Model {
 
     public function juiz() {
         return $this->belongsTo(Juiz::class);
-      
     }
-    
-    public function parecer() {
-        return $this->belongsTo(Parecer::class)
-                ->withDefault([
-                    'nome' => 'N/A',
-                ]);
+
+    public function pareceres() {
+        return $this->morphMany(Parecer::class, 'parecer');
     }
+
     public function anexos() {
         return $this->morphMany(Anexo::class, 'anexavel');
     }

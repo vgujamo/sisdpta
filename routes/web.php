@@ -84,6 +84,13 @@ Route::get('/processo/processo_edit/{id}', [ProcessoController::class, 'edit'])-
 Route::get('/processo/processo_validar/', [ProcessoController::class, 'validar'])->name('processo.processo_validar');
 Route::get('/anexo/download', [ProcessoController::class, 'download'])->name('download');
 
+
+Route::get('/juiz/juiz_list', [JuizController::class, 'index'])->name('juiz.juiz_list');
+Route::get('/juiz/juiz_create', [JuizController::class, 'create'])->name('juiz.juiz_create');
+Route::post('/juiz', [JuizController::class, 'store'])->name('juiz.store');
+Route::put('/juiz/{id}', [JuizController::class, 'update'])->name('juiz.update');
+Route::get('/juiz/juiz_details/{id}', [JuizController::class, 'show'])->name('juiz.juiz_details');
+Route::get('/juiz/juiz_edit/{id}', [JuizController::class, 'edit'])->name('juiz.juiz_edit');
 /* 
  require __DIR__ . '/auth.php'; 
  */

@@ -201,14 +201,12 @@
                             <div class="tab-pane active" id="home3" role="tabpanel">
                                 <div class="row">
                                     <div class="form-group col-sm-3 input-group-sm">
-                                        <select class="form-control @error('parecer_id') is-invalid @enderror" name="parecer_id" id="parecer_dropdown">
+                                        <select class="form-control @error('parecer') is-invalid @enderror" name="parecer" id="parecer_dropdown">
                                             <option disabled selected>--Selecione o Parecer--</option>
-                                            @foreach($pareceres as $key =>$parecer)
-
-                                            <option value="{{$parecer->id  }}" {{ ( old("parecer_id") == $parecer->id ? "selected" : "") }}> {{$parecer->nome}}</option>
-                                            @endforeach
+                                            <option value="Em condições" {{ old('parecer') == 'Em condições' ? 'selected' : '' }}>Em condições</option>
+                                            <option value="Sem condições" {{ old('parecer') == 'Sem condições' ? 'selected' : '' }}>Sem condições</option>
                                         </select>
-                                        @error('parecer_id')
+                                        @error('parecer')
                                         <span class="invalid-feedback" role="alert">
                                             <b><i>{{$message}}</i></b>
                                         </span>
@@ -218,9 +216,10 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm input-group-sm">
-                                        <label form="descricao">Descrição do parecer (Opcional)</label>
-                                        <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" placeholder="Parecer" name="descricao" rows="2" cols="10"> {{ old('descricao') }} </textarea>
-                                        @error('descricao')
+                                        <label form="descricao_parecer">Descrição do parecer (Opcional)</label>
+                                        <textarea class="form-control @error('descricao_parecer') is-invalid @enderror" id="descricao_parecer" placeholder="Parecer" name="descricao_parecer" rows="2" cols="10"> {{ old('descricao_parecer') }} </textarea>
+                                        
+                                        @error('descricao_parecer')
                                         <span class="invalid-feedback" role="alert">
                                             <b><i>{{$message}}</i></b>
                                         </span>

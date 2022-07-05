@@ -17,18 +17,14 @@ class CreateParecersTable extends Migration {
             $table->morphs('parecer');
             $table->string('nome');
             $table->string('processo');
-            $table->string('descricao');
+            $table->string('descricao_parecer')->nullable();
             $table->string('user',50)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+ 
     public function down() {
         Schema::dropIfExists('parecers');
     }

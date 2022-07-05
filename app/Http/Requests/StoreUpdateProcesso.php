@@ -32,9 +32,9 @@ class StoreUpdateProcesso extends FormRequest {
             'contaparte' => 'required|min:3|max:50',
             'objecto' => 'required|min:3|max:100',
             'anexo.*' => 'mimes:pdf',
-            'parecer_id' => 'required',
-            'descricao' => 'nullable|min:5|max:100',
             'despacho_id' => 'nullable|min:1|max:100',
+            'parecer' => 'required',
+            'descricao_parecer' => 'nullable|min:5|max:100',
         ];
     }
 
@@ -46,7 +46,6 @@ class StoreUpdateProcesso extends FormRequest {
             'subseccao_id' => 'subseccao',
             'especie_id' => 'especie',
             'objecto' => 'objecto do processo',
-            'parecer_id' => 'parecer',
         ];
     }
 
