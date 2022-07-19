@@ -12,6 +12,8 @@ use App\Models\{
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdatePessoa;
 use App\Http\Requests\StoreUpdateFuncionario;
+use App\Http\Requests\StoreUpdateJuiz;
+
 
 class PessoaController extends Controller {
 

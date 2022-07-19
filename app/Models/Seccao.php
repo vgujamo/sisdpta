@@ -29,5 +29,8 @@ class Seccao extends Model {
     public function processo() {
         return $this->hasMany(Processo::class);
     }
+    public function juiz() {
+        return $this->hasMany(Juiz::class);
+    }
 
 }

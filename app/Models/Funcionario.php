@@ -17,16 +17,13 @@ class Funcionario extends Model {
     ];
 
     public function pessoa() {
-        return $this->belongsTo(Pessoa::class)
-                        ->withDefault([
-                            'nome' => 'N\A',
-                            'apelido' => 'N\A',
-        ]);
+        return $this->belongsTo(Pessoa::class);
+      
     }
 
     public function pais() {
-        return $this->belongsTo(Funcionario::class)
-                        ->withDefault();
+        return $this->belongsTo(Pais::class);
+                        
     }
 
 }

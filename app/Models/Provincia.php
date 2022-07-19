@@ -20,6 +20,14 @@ class Provincia extends Model {
     public function pessoa() {
         return $this->hasMany(Pessoa::class);
     }
+    
+    public function funcionario() {
+        return $this->hasMany(Funcionario::class);
+    }
+    
+    public function juiz() {
+        return $this->hasMany(Juiz::class);
+    }
 
     public function pais() {
         return $this->belongsTo(Pais::class);

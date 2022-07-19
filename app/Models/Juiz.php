@@ -29,19 +29,15 @@ class Juiz extends Model {
     }
 
     public function pessoa() {
-        return $this->belongsTo(Pessoa::class)
-                        ->withDefault([
-                            'nome' => 'N\A',
-                            'apelido' => 'N\A',
-        ]);
-    }
-
-    public function pais() {
-        return $this->belongsTo(Juiz::class);
+        return $this->belongsTo(Pessoa::class);
     }
 
     public function seccao() {
         return $this->belongsTo(Seccao::class);
+    }
+
+    public function pais() {
+        return $this->belongsTo(Pais::class);
     }
 
 }

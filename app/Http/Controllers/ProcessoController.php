@@ -122,7 +122,7 @@ class ProcessoController extends Controller {
                                 ->with('txtmessage', 'Clique OK para continuar.');
                     });
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            //dd($e->getMessage());
             return redirect()->back();
         }
     }

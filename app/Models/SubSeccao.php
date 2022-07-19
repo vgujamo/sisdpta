@@ -18,5 +18,9 @@ class SubSeccao extends Model {
     public function especie() {
         return $this->hasMany(Especie::class);
     }
+    
+    public function juiz() {
+        return $this->hasMany(Juiz::class);
+    }
 
 }

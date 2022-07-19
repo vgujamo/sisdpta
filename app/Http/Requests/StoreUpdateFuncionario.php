@@ -6,17 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateFuncionario extends FormRequest {
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+ 
     public function authorize() {
         return true;
     }
 
     public function rules() {
         return [
+            
             'nif' => 'required|min:2|max:50',
             'nome' => 'required|min:2|max:50',
             'apelido' => 'required|min:2|max:50',

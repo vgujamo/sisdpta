@@ -6,7 +6,7 @@
             <div class="page-header-title">
                 <i class="icofont icofont icofont icofont-plus-square bg-c-pink"></i>
                 <div class="d-inline">
-                    <h4>Cadastrar Pessoa</h4>
+                    <h4>Cadastrar Juiz</h4>
                     <span></span>
                 </div>
             </div>
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<form class="form-horizontal" role="form" action="{{ route('juiz.store') }}" method="post" autocomplete="on" style="">
+<form class="form-horizontal" role="form" action="{{ route('juiz.store') }}" method="post" autocomplete="on">
     @csrf
     @foreach ($errors->all() as $error)
     @endforeach
@@ -25,7 +25,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="nome">Nome</label>
-                            <input class="form-control @error('nome') is-invalid @enderror" type="text" name="nome" placeholder="Nome" value="{{ old('nome') }}"  />
+                            <input class="form-control @error('nome') is-invalid @enderror" type="text" name="nome" placeholder="Nome" value="{{ old('nome', $juiz->pessoa->nome??'') }}"  />
                             @error('nome')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -34,7 +34,7 @@
                         </div>   
                         <div class="form-group col-sm-5 input-group-sm">
                             <label form="apelido">Apelido</label>
-                            <input class="form-control @error('apelido') is-invalid @enderror" type="text" name="apelido" placeholder="Apelido" value="{{ old('apelido') }}"/>
+                            <input class="form-control @error('apelido') is-invalid @enderror" type="text" name="apelido" placeholder="Apelido" value="{{ old('apelido', $juiz->pessoa->apelido??'') }}"/>
                             @error('apelido')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -45,7 +45,7 @@
                     <div class="row p-1">
                         <div class="form-group col-sm input-group-sm">
                             <label form="pai">Nome do pai</label><!-- comment -->
-                            <input class="form-control @error('pai') is-invalid @enderror" type="text" name="pai" placeholder="Nome do Pai" value="{{ old('pai') }}"/>
+                            <input class="form-control @error('pai') is-invalid @enderror" type="text" name="pai" placeholder="Nome do Pai" value="{{ old('pai', $juiz->pessoa->pai??'') }}"/>
                             @error('pai')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -54,7 +54,7 @@
                         </div>   
                         <div class="form-group col-sm input-group-sm">
                             <label form="mae">Nome da mãe</label>
-                            <input class="form-control @error('mae') is-invalid @enderror" type="text" name="mae" placeholder="Nome da Mãe" value="{{ old('mae') }}"/>
+                            <input class="form-control @error('mae') is-invalid @enderror" type="text" name="mae" placeholder="Nome da Mãe" value="{{ old('mae', $juiz->pessoa->mae??'') }}"/>
                             @error('mae')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -68,7 +68,8 @@
 
                             <div class="form-check-inline">
                                 <label class="form-check-label @error('sexo') is-invalid @enderror" form="Masculino">Masculino
-                                    <input type="radio" id="M" name="sexo" class="form-check-input" value="M" {{ (old("sexo", $pessoa->sexo??'')=="M"?"selected":"") }}/>
+                                    <input type="radio" id="M" name="sexo" class="form-check-input" value="M" {{ (old("sexo", $juiz->pessoa->sexo??'')=="M"?"selected":"") }}/>
+                                    
                                     @error('sexo')
                                     <span class="invalid-feedback" role="alert">
                                         <b><i>{{$message}}</i></b>
@@ -78,7 +79,7 @@
                             </div> 
                             <div class="form-check-inline">
                                 <label class="form-check-label @error('sexo') is-invalid @enderror" form="Femenino">Femenino
-                                    <input type="radio" id="" name="sexo" class="form-check-input" value="F" {{ (old("sexo", $pessoa->sexo??'')=="F"?"cheked":"") }}/>
+                                    <input type="radio" id="" name="sexo" class="form-check-input" value="F" {{ (old("sexo", $juiz->pessoa->sexo??'')=="F"?"cheked":"") }}/>
                                     @error('sexo')
                                     <span class="invalid-feedback" role="alert">
                                         <b><i>{{$message}}</i></b>
@@ -89,7 +90,7 @@
                         </div>
                         <div class="form-group col-sm">
                             <label form="data_nasc">Data de Nascimento</label>
-                            <input class="form-control @error('data_nasc') is-invalid @enderror" type="date" name="data_nasc" value="{{ old('data_nasc') }}" />
+                            <input class="form-control @error('data_nasc') is-invalid @enderror" type="date" name="data_nasc" value="{{ old('data_nasc', $juiz->pessoa->data_nasc??'') }}" />
                             @error('data_nasc')
                             <span class="invalid-feedback" role="alert">
                                 <b><i>{{$message}}</i></b>
@@ -100,9 +101,9 @@
                             <label form="estado_civil">Estado Civil</label>
                             <select class="form-control @error('estado_civil') is-invalid @enderror" type="text" name="estado_civil" id="estado_civil" value="{{ old('estado_civil') }}">
                                 <option disabled selected>Selecione o estado civil</option>
-                                <option value="Solteiro">Solteiro</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
+                                 <option value="Solteiro" {{ old('estado_civil') == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
+                                <option value="Casado" {{ old('estado_civil') == 'Casado' ? 'selected' : '' }}>Casado</option>
+                                <option value="Divorciado" {{ old('estado_civil') == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
                             </select>
                             @error('estado_civil')
                             <span class="invalid-feedback" role="alert">
@@ -233,12 +234,12 @@
                                                     <label form="tipo_doc">Tipo de Documento</label>
                                                     <select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" id="tipo_doc" type="text" value="{{ old('tipo_doc') }}">
                                                         <option disabled selected="">--Selecione o tipo de Documento--</option>
-                                                        <option value="BI">BI</option>
-                                                        <option value="Passaport" id="">Passaporte</option>
-                                                        <option value="Cartão de Eleitor" id="" class="">Cartão de Eleitor</option>
-                                                        <option value="Cédula" id="" class="">Cédula</option>
-                                                        <option value="DIRE" id="" class="">DIRE</option>
-                                                        <option value="Outro" id="" class="">Outros</option>
+                                                        <option value="BI" {{ old('tipo_doc') == 'BI' ? 'selected' : '' }}>BI</option>
+                                                        <option value="Passaport" {{ old('tipo_doc') == 'Passaport' ? 'selected' : '' }}>Passaporte</option>
+                                                        <option value="Cartão de Eleitor" {{ old('tipo_doc') == 'Cartão de Eleitor' ? 'selected' : '' }}>Cartão de Eleitor</option>
+                                                        <option value="Cédula" id="" {{ old('tipo_doc') == 'Cédula' ? 'selected' : '' }}>Cédula</option>
+                                                        <option value="DIRE" {{ old('tipo_doc') == 'DIRE' ? 'selected' : '' }}>DIRE</option>
+                                                        <option value="Outro" {{ old('tipo_doc') == 'Outro' ? 'selected' : '' }}>Outros</option>
                                                     </select>
                                                     @error('tipo_doc')
                                                     <span class="invalid-feedback" role="alert">
@@ -332,21 +333,21 @@
                                                     </span>
                                                     @enderror
                                                 </div>                                                                                        
-                                                <div class="form-group col-sm input-group-sm">
-                                                    <label form="data_nasc"> Inicio de Funcoes</label>
-                                                    <input class="form-control @error('data_nasc') is-invalid @enderror" type="date" name="data_nasc" value="{{ old('data_nasc') }}" />
+                                                <div class="form-group col-sm-2 input-group-sm">
+                                                    <label form="data_inicial"> Inicio de Funcoes</label>
+                                                    <input class="form-control @error('data_inicial') is-invalid @enderror" type="date" name="data_inicial" value="{{ old('data_inicial') }}" />
 
-                                                    @error('data_nasc')
+                                                    @error('data_inicial')
                                                     <span class="invalid-feedback" role="alert">
                                                         <b><i>{{$message}}</i></b>
                                                     </span>
                                                     @enderror
                                                 </div>
-                                                <div class="form-group col-sm input-group-sm">
-                                                    <label form="data_nasc"> Fim de Funcoes</label>
-                                                    <input class="form-control @error('data_nasc') is-invalid @enderror" type="date" name="data_nasc" value="{{ old('data_nasc') }}" />
+                                                <div class="form-group col-sm-2 input-group-sm">
+                                                    <label form="data_final"> Fim de Funcoes</label>
+                                                    <input class="form-control @error('data_final') is-invalid @enderror" type="date" name="data_final" value="{{ old('data_final') }}" />
 
-                                                    @error('data_nasc')
+                                                    @error('data_final')
                                                     <span class="invalid-feedback" role="alert">
                                                         <b><i>{{$message}}</i></b>
                                                     </span>
@@ -358,9 +359,9 @@
                                                 <div class="form-group col-sm input-group-sm">
                                                     <label form="sexo">Presidente da Secao:</label><br>
 
-                                                    <div class="form-check-inline">
-                                                        <label class="form-check-label @error('presidente') is-invalid @enderror" form="Masculino"> Sim
-                                                            <input type="radio" id="Sim" name="presidente" class="form-check-input" value="Sim" {{ (old("presidente", $juiz->pessoa->presidente??'')=="Sim"?"selected":"") }}/>
+                                                    <div class="form-check">
+                                                        <input type="radio" id="Sim" name="presidente" class="form-check-input" value="Sim" {{ (old("presidente", $juiz->presidente??'')=="Sim" ? "selected":"") }}/>
+                                                        <label class="form-check-label @error('presidente') is-invalid @enderror" form="Sim"> Sim
                                                             @error('presidente')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <b><i>{{$message}}</i></b>
@@ -368,9 +369,9 @@
                                                             @enderror
                                                         </label>
                                                     </div> 
-                                                    <div class="form-check-inline">
-                                                        <label class="form-check-label @error('sexo') is-invalid @enderror" form="Femenino"> Nao
-                                                            <input type="radio" id="" name="presidente" class="form-check-input" value="Nao" checked="" {{ (old("presidente", $juiz->pessoa->presidente??'')=="F"?"cheked":"") }}/>
+                                                    <div class="form-check">
+                                                        <input type="radio" id="Nao" name="presidente" class="form-check-input" value="Nao" checked="" {{ (old("presidente", $juiz->presidente??'')=="Nao" ? "cheked":"") }}/>
+                                                        <label class="form-check-label @error('presidente') is-invalid @enderror" form="Nao"> Nao
                                                             @error('presidente')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <b><i>{{$message}}</i></b>

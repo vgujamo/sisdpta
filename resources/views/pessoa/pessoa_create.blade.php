@@ -100,9 +100,9 @@
                             <label form="estado_civil">Estado Civil</label>
                             <select class="form-control @error('estado_civil') is-invalid @enderror" type="text" name="estado_civil" id="estado_civil" value="{{ old('estado_civil') }}">
                                 <option disabled selected>Selecione o estado civil</option>
-                                <option value="Solteiro">Solteiro</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
+                                <option value="Solteiro" {{ old('estado_civil') == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
+                                <option value="Casado" {{ old('estado_civil') == 'Casado' ? 'selected' : '' }}>Casado</option>
+                                <option value="Divorciado" {{ old('estado_civil') == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
                             </select>
                             @error('estado_civil')
                             <span class="invalid-feedback" role="alert">
@@ -173,7 +173,7 @@
                                                     <label form="distrito_id">Distrito</label>
                                                     <select class="form-control @error('distrito_id') is-invalid @enderror" name="distrito_id" id="distrito_dropdown">
                                                         <option disabled selected>--Selecione o Distrito--</option>
-                                                        
+
                                                         <option value=""></option>
                                                     </select>
                                                     @error('distrito_id')
@@ -230,12 +230,12 @@
                                                     <label form="tipo_doc">Tipo de Documento</label>
                                                     <select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" id="tipo_doc" type="text" value="{{ old('tipo_doc') }}">
                                                         <option disabled selected="">--Selecione o tipo de Documento--</option>
-                                                        <option value="BI">BI</option>
-                                                        <option value="Passaport" id="">Passaporte</option>
-                                                        <option value="Cartão de Eleitor" id="" class="">Cartão de Eleitor</option>
-                                                        <option value="Cédula" id="" class="">Cédula</option>
-                                                        <option value="DIRE" id="" class="">DIRE</option>
-                                                        <option value="Outro" id="" class="">Outros</option>
+                                                        <option value="BI" {{ old('tipo_doc') == 'BI' ? 'selected' : '' }}>BI</option>
+                                                        <option value="Passaport" {{ old('tipo_doc') == 'Passaport' ? 'selected' : '' }}>Passaporte</option>
+                                                        <option value="Cartão de Eleitor" {{ old('tipo_doc') == 'Cartão de Eleitor' ? 'selected' : '' }}>Cartão de Eleitor</option>
+                                                        <option value="Cédula" id="" {{ old('tipo_doc') == 'Cédula' ? 'selected' : '' }}>Cédula</option>
+                                                        <option value="DIRE" {{ old('tipo_doc') == 'DIRE' ? 'selected' : '' }}>DIRE</option>
+                                                        <option value="Outro" {{ old('tipo_doc') == 'Outro' ? 'selected' : '' }}>Outros</option>
                                                     </select>
                                                     @error('tipo_doc')
                                                     <span class="invalid-feedback" role="alert">
@@ -330,7 +330,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="form-row"></div>
 </form>
 @push('scripts')

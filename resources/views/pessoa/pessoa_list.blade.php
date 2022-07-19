@@ -31,7 +31,7 @@
 
 
 <table class="table table-sm table-striped">
-    <thead class="">
+    <thead>
         <tr class="text-uppercase">
             <th>#</th>
             <th>Nome</th>

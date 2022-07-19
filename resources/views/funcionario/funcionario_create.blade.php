@@ -79,7 +79,7 @@
 
                             <div class="form-check-inline">
                                 <label class="form-check-label @error('sexo') is-invalid @enderror" form="Masculino">Masculino
-                                    <input type="radio" id="M" name="sexo" class="form-check-input" value="M" {{ (old("sexo", $pessoa->sexo??'')=="M"?"selected":"") }}/>
+                                    <input type="radio" id="M" name="sexo" class="form-check-input" value="M" {{ (old("sexo", $funcionario->pessoa->sexo??'')=="M"?"selected":"") }}/>
                                     @error('sexo')
                                     <span class="invalid-feedback" role="alert">
                                         <b><i>{{$message}}</i></b>
@@ -89,7 +89,7 @@
                             </div> 
                             <div class="form-check-inline">
                                 <label class="form-check-label @error('sexo') is-invalid @enderror" form="Femenino">Femenino
-                                    <input type="radio" id="" name="sexo" class="form-check-input" value="F" {{ (old("sexo", $pessoa->sexo??'')=="F"?"selected":"") }}/>
+                                    <input type="radio" id="" name="sexo" class="form-check-input" value="F" {{ (old("sexo", $funcionario->pessoa->sexo??'')=="F"?"selected":"") }}/>
                                     @error('sexo')
                                     <span class="invalid-feedback" role="alert">
                                         <b><i>{{$message}}</i></b>
@@ -111,9 +111,9 @@
                             <label form="estado_civil">Estado Civil</label>
                             <select class="form-control @error('estado_civil') is-invalid @enderror" type="text" name="estado_civil" id="estado_civil" value="{{ old('estado_civil', $funcionario->pessoa->estado_civil??'') }}">
                                 <option disabled selected>Selecione o estado civil</option>
-                                <option value="Solteiro">Solteiro</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
+                                <option value="Solteiro" {{ old('estado_civil') == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
+                                <option value="Casado" {{ old('estado_civil') == 'Casado' ? 'selected' : '' }}>Casado</option>
+                                <option value="Divorciado" {{ old('estado_civil') == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
                             </select>
                             @error('estado_civil')
                             <span class="invalid-feedback" role="alert">
@@ -237,12 +237,12 @@
                                                     <label form="tipo_doc">Tipo de Documento</label>
                                                     <select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" id="tipo_doc" type="text" value="{{ old('tipo_doc', $funcionario->pessoa->tipo_doc??'') }}">
                                                         <option disabled selected="">Selecione o tipo de doc</option>
-                                                        <option value="BI">BI</option>
-                                                        <option value="Passaporte" id="" class="">Passaporte</option>
-                                                        <option value="Cartão de Eleitor" id="" class="">Cartão de Eleitor</option>
-                                                        <option value="Cédula" id="" class="">Cédula</option>
-                                                        <option value="DIRE" id="" class="">DIRE</option>
-                                                        <option value="Outro" id="" class="">Outros</option>
+                                                        <option value="BI" {{ old('tipo_doc') == 'BI' ? 'selected' : '' }}>BI</option>
+                                                        <option value="Passaport" {{ old('tipo_doc') == 'Passaport' ? 'selected' : '' }}>Passaporte</option>
+                                                        <option value="Cartão de Eleitor" {{ old('tipo_doc') == 'Cartão de Eleitor' ? 'selected' : '' }}>Cartão de Eleitor</option>
+                                                        <option value="Cédula" id="" {{ old('tipo_doc') == 'Cédula' ? 'selected' : '' }}>Cédula</option>
+                                                        <option value="DIRE" {{ old('tipo_doc') == 'DIRE' ? 'selected' : '' }}>DIRE</option>
+                                                        <option value="Outro" {{ old('tipo_doc') == 'Outro' ? 'selected' : '' }}>Outros</option>
                                                     </select>
                                                     @error('tipo_doc')
                                                     <span class="invalid-feedback" role="alert">

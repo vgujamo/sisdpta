@@ -28,6 +28,11 @@ class Pais extends Model {
         
     }
     
+    public function juiz() {
+        return $this->belongsTo(Juiz::class);
+        
+    }
+    
     
     public function provincia() {
         return $this->haMany(Provincia::class);

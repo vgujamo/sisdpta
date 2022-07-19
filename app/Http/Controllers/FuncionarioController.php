@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\{
     Pessoa,
     Funcionario,
@@ -38,6 +37,7 @@ class FuncionarioController extends Controller {
 
     public function store(StoreUpdateFuncionario $request) {
         $data = $request->all();
+        
         $pessoa = Pessoa::create($data);
         $insert = $pessoa->funcionario()->create($data);
         if ($insert) {
